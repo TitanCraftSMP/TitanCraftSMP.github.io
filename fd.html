@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generell - Titancraft Forum</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-menu li {
+            margin-left: 20px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .section {
+            padding: 60px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            margin-top: 80px; /* Platz für den fixierten Header */
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .discussions-list {
+            list-style: none;
+            padding: 0;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .discussions-list li {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .discussions-list li:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="titancrafts.png" alt="titancrafts">
+        </div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="forum.html">Forum</a></li>
+                <li><a href="javascript:login()">Anmelden</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="section">
+        <h1>Generell Forum</h1>
+        <ul class="discussions-list">
+            <li>Diskussion 1</li>
+            <li>Diskussion 2</li>
+            <li>Diskussion 3</li>
+        </ul>
+    </section>
+
+    <script>
+        function login() {
+            // Hier sollte die Logik zur Discord-Authentifizierung implementiert werden.
+            alert("Discord-Login wird hier implementiert.");
+        }
+    </script>
+</body>
+</html>
