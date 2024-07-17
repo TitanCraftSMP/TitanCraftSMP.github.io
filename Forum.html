@@ -50,7 +50,7 @@
 <body>
     <div class="container">
         <h2>Anmeldeformular</h2>
-        <form action="/submit" method="post">
+        <form id="loginForm" action="/submit" method="post" onsubmit="return handleLogin(event)">
             <label for="username">Benutzername</label>
             <input type="text" id="username" name="username" required>
             <label for="password">Passwort</label>
@@ -60,5 +60,31 @@
             <input type="submit" value="Anmelden">
         </form>
     </div>
+
+    <script>
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('loginForm');
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch('/submit', {
+                    method: 'POST',
+                    body: formData,
+                    redirect: 'follow'
+                });
+
+                if (response.redirected) {
+                    window.location.href = '/CreateForum.html'; // Weiterleitung zur CreateForum.html Seite
+                } else {
+                    alert('Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten.');
+                }
+            } catch (error) {
+                console.error('Anmeldefehler:', error);
+                alert('Es ist ein Fehler bei der Anmeldung aufgetreten.');
+            }
+        }
+    </script>
 </body>
 </html>
