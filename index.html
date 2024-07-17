@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Willkommen bei Titancraft, dem ultimativen Minecraft SMP Server. Erfahre mehr über uns, unsere Server-Informationen, Neuigkeiten und die Community.">
     <title>Titancraft - Minecraft SMP Server</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
@@ -173,23 +172,22 @@ footer {
 </head>
 <body>
     <header>
-    <div class="logo">
-        <img src="titancrafts.png" alt="titancrafts">
-    </div>
-    <nav>
-        <div class="hamburger" id="hamburger">☰</div>
-        <ul class="nav-menu" id="nav-menu">
-            <li><a onclick="showSection('home')">Home</a></li>
-            <li><a onclick="showSection('about')">Über uns</a></li>
-            <li><a onclick="showSection('server-info')">Server-Informationen</a></li>
-            <li><a onclick="showSection('news')">News</a></li>
-            <li><a onclick="showSection('community')">Community</a></li>
-            <li><a onclick="showSection('support')">Support</a></li>
-            <li><a onclick="showSection('contact')">Kontakt</a></li>
-            <li><a href="anmeldeformular.html">Forum</a></li>
-        </ul>
-    </nav>        
-</header>
+        <div class="logo">
+            <img src="titancrafts.png" alt="titancrafts">
+        </div>
+        <nav>
+            <div class="hamburger" id="hamburger">☰</div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a onclick="showSection('about')">Über uns</a></li>
+                <li><a onclick="showSection('server-info')">Server-Informationen</a></li>
+                <li><a onclick="showSection('news')">News</a></li>
+                <li><a onclick="showSection('community')">Community</a></li>
+                <li><a onclick="showSection('support')">Support</a></li>
+                <li><a onclick="showSection('contact')">Kontakt</a></li>
+                <li><a href="anmeldeformular.html">Forum</a></li>
+            </ul>
+        </nav>        
+    </header>
 
     <section id="home" class="hero section">
         <div class="container">
@@ -223,100 +221,136 @@ footer {
                 </div>
                 <div class="info-item">
                     <h3>Version</h3>
-                    <p>1.19.4 - 1.20.1</p>
+                    <p>Hauptversion: 1.20.1<br>Beitritt möglich von 1.8 bis 1.20.1</p>
                 </div>
                 <div class="info-item">
                     <h3>Regeln</h3>
-                    <ul>
-                        <li>Kein Griefing</li>
-                        <li>Respektiere andere Spieler</li>
-                        <li>Keine Mods oder Hacks</li>
-                    </ul>
+                    <p>Keine Beleidigung im Chat<br>Kein Bug ausnutzen z. B. Laggmaschinen<br>Keine Hackclients<br>Keine spielerleichternden Mods wie XRay, Minimap</p>
                 </div>
                 <div class="info-item">
                     <h3>Features</h3>
-                    <ul>
-                        <li>Wirtschaftssystem</li>
-                        <li>Clans und PvP</li>
-                        <li>Regelmäßige Events</li>
-                    </ul>
+                    <p>Survival, Events, starke Community.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="news" class="news section">
-        <div class="container">
-            <h2>News & Updates</h2>
-            <div class="news-item">
-                <h3>Update 1.20 veröffentlicht</h3>
-                <p>Wir freuen uns, das neueste Update 1.20 bekannt zu geben! Entdecke neue Features und Abenteuer.</p>
+<section id="news" class="news section">
+    <div class="container">
+        <h2>News & Updates</h2>
+        <div class="updates">
+            <div class="update-item">
+                <h3>Update: Neuer Server 24/7</h3>
+                <p>Hinzugefügt:</p>
+                <ul>
+                    <li>Neuer Server 24/7</li>
+                    <li>Clan Plugin</li>
+                    <li>Scoreboard</li>
+                </ul>
+                <p>Entfernt:</p>
+                <ul>
+                    <li>Alter Server</li>
+                </ul>
+                <p>Bei der Übertragung der SMP Welt von Aternos auf den neuen Server ist ein Fehler aufgetreten, der es nicht erlaubt, die SMP Welt zu exportieren. Ihr werdet neu anfangen müssen. Wenn ihr größere Gebäude hattet, erstellt einfach ein Ticket, dann werde ich sie per Schematic exportieren. Eure Items sollten allerdings erhalten geblieben sein.</p>
             </div>
-            <div class="news-item">
-                <h3>Neues Event: Bauwettbewerb</h3>
-                <p>Nimm an unserem Bauwettbewerb teil und gewinne tolle Preise! Weitere Details findest du auf unserem Discord.</p>
+            <div class="update-item">
+                <h3>Update: Bank Plugin und Freunde Plugin</h3>
+                <p>Hinzugefügt:</p>
+                <ul>
+                    <li>Bank Plugin</li>
+                    <li>Freunde Plugin</li>
+                    <li>Custom Tab</li>
+                </ul>
+                <p>Entfernt:</p>
+                <ul>
+                    <li>Deluxehub</li>
+                    <li>Scoreboard</li>
+                </ul>
+                <p>Für alle, die Simple Voice Chat benutzen wollen, schaut euch unbedingt dieses Video an: <a href="https://youtu.be/W_98uqbjepE">https://youtu.be/W_98uqbjepE</a></p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="community" class="community section">
-        <div class="container">
-            <h2>Community</h2>
-            <p>Verbinde dich mit anderen Spielern und werde Teil unserer wachsenden Community!</p>
-            <a href="https://discord.gg/vgtjc66FR3" class="btn">Join our Discord</a>
+
+<section id="community" class="community section">
+    <div class="container">
+        <h2>Community</h2>
+        <p>Willkommen in unserer lebendigen Community bei Titancraft! Hier hast du die Möglichkeit, dich mit anderen Spielern zu verbinden, neue Freundschaften zu schließen und gemeinsam spannende Abenteuer zu erleben.</p>
+        <p>Trete unserem Discord-Server bei, um in Echtzeit mit anderen Mitgliedern zu kommunizieren und an Community-Events teilzunehmen. Unser Forum bietet einen Raum für ausführlichere Diskussionen, Tutorials und den Austausch von Bauideen.</p>
+        <div class="community-links">
+            <a href="https://discord.com/invite/ZZYZhHVTMB" class="btn">Unser Discord</a>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="support" class="support section">
-        <div class="container">
-            <h2>Support</h2>
-            <p>Hast du Fragen? Hier findest du Antworten auf die häufigsten Fragen.</p>
+
+<section id="support" class="support section">
+    <div class="container">
+        <h2>Häufig gestellte Fragen (FAQ)</h2>
+        <div class="support-info">
+            <h3>Welche Version ist euer Server?</h3>
+            <p>Die Hauptversion unseres Servers ist 1.20.1. Ihr könnt jedoch ab der Version 1.8 jede Version nutzen, um dem Server beizutreten.</p>
+
+            <h3>Ist der Server für Bedrock?</h3>
+            <p>Ja, unser Server unterstützt Bedrock-Edition. Ihr könnt sowohl mit Java Edition als auch mit Bedrock Edition dem Server beitreten.</p>
+
+            <h3>Kann man sich bewerben?</h3>
+            <p>Ja, Bewerbungen sind möglich. Aktuell suchen wir jedoch keine neuen Supporter.</p>
+        </div>
+    </div>
+</section>
+
+
+<section id="contact" class="contact section">
+    <div class="container">
+        <h2>Kontakt</h2>
+        <p>Für Anfragen oder weitere Informationen, besuche unsere Social-Media-Profile:</p>
+        <div class="contact-info">
+            <h3>Social Media</h3>
             <ul>
-                <li><strong>Wie trete ich dem Server bei?</strong> Nutze die IP-Adresse und die angegebene Version.</li>
-                <li><strong>Wie melde ich einen Spieler?</strong> Kontaktiere einen Admin oder Mod auf unserem Discord.</li>
-                <li><strong>Wie kann ich Builder werden?</strong> Bewirb dich auf unserem Discord mit einer Beispielarbeit.</li>
+                <li><strong>Discord:</strong> <a href="https://discord.gg/ZZYZhHVTMB">discord.gg/ZZYZhHVTMB</a></li>
+                <li><strong>Shop:</strong> <a href="https://inwartung.com">inwartung.com</a></li>
+                <li><strong>Webseite:</strong> <a href="https://inwartung.com">inwartung.com</a></li>
+                <li><strong>Youtube:</strong> <a href="https://youtube.com/@t1tancraftsmp?feature=shared">youtube.com/@t1tancraftsmp?feature=shared</a></li>
             </ul>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="contact" class="contact section">
-        <div class="container">
-            <h2>Kontakt</h2>
-            <p>Bleibe in Kontakt mit uns über soziale Medien:</p>
-            <ul>
-                <li><a href="https://twitter.com/titancraft">Twitter</a></li>
-                <li><a href="https://facebook.com/titancraft">Facebook</a></li>
-                <li><a href="https://instagram.com/titancraft">Instagram</a></li>
-            </ul>
-        </div>
-    </section>
-
-    <footer>
+<footer>
+    <div class="container">
         <p>&copy; 2024 Titancraft. Alle Rechte vorbehalten.</p>
-    </footer>
+        <div class="social-media">
+            <ul>
+                <li><a href="https://discord.gg/ZZYZhHVTMB">Discord</a></li>
+                <li><a href="https://inwartung.com">Shop</a></li>
+                <li><a href="https://inwartung.com">Webseite</a></li>
+                <li><a href="https://youtube.com/@t1tancraftsmp?feature=shared">Youtube</a></li>
+            </ul>
+        </div>
+    </div>
+</footer>
 
-    <script>
-        const sections = document.querySelectorAll('.section');
-        const navMenu = document.getElementById('nav-menu');
-        const hamburger = document.getElementById('hamburger');
 
-        function showSection(id) {
-            sections.forEach(section => {
-                if (section.id === id) {
-                    section.style.display = 'block';
-                } else {
-                    section.style.display = 'none';
-                }
-            });
-        }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            showSection('home'); // Home-Bereich beim Laden der Seite anzeigen
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+    });
+
+    function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.display = 'none';
         });
+        document.getElementById(sectionId).style.display = 'block';
+    }
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('show');
-        });
-    </script>
+    document.getElementById('home').style.display = 'flex';
+</script>
+
 </body>
 </html>
