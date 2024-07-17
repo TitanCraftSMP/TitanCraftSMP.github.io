@@ -22,7 +22,7 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
         }
-        input[type="text"], input[type="password"], input[type="date"] {
+        input[type="text"], input[type="password"], input[type="date"], input[type="email"] {
             width: 100%;
             padding: 10px;
             margin: 5px 0 20px 0;
@@ -55,10 +55,25 @@
             <input type="text" id="username" name="username" required>
             <label for="password">Passwort</label>
             <input type="password" id="password" name="password" required>
+            <label for="confirm-password">Passwort bestätigen</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" required>
             <label for="birthdate">Geburtsdatum</label>
             <input type="date" id="birthdate" name="birthdate" required>
             <input type="submit" value="Anmelden">
         </form>
     </div>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            if (password !== confirmPassword) {
+                alert('Die Passwörter stimmen nicht überein.');
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
