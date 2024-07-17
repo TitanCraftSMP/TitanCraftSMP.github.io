@@ -35,7 +35,7 @@
         .chat-box p {
             margin: 10px 0;
         }
-        input[type="text"] {
+        input[type="text"], input[type="submit"], textarea, select {
             width: calc(100% - 50px);
             padding: 10px;
             margin: 5px 0;
@@ -46,7 +46,6 @@
         input[type="submit"] {
             background-color: #f39c12;
             color: white;
-            padding: 10px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
@@ -55,28 +54,64 @@
         input[type="submit"]:hover {
             background-color: #e67e22;
         }
-        .message-form {
+        .message-form, .topic-form {
             display: flex;
+            flex-direction: column;
+        }
+        .category-title {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #f39c12;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Forum Chat</h2>
-        <div class="chat-box" id="chat-box">
-            <!-- Chat messages will appear here -->
+        
+        <div class="chat-box" id="generell-chat-box">
+            <h3 class="category-title">Generell</h3>
+            <!-- Generell chat messages will appear here -->
         </div>
+        
+        <div class="chat-box" id="support-chat-box">
+            <h3 class="category-title">Support</h3>
+            <!-- Support chat messages will appear here -->
+        </div>
+        
+        <div class="chat-box" id="ideen-chat-box">
+            <h3 class="category-title">Ideen</h3>
+            <!-- Ideen chat messages will appear here -->
+        </div>
+        
         <form class="message-form" onsubmit="sendMessage(event)">
-            <input type="text" id="message" placeholder="Nachricht eingeben" required>
+            <select id="category">
+                <option value="generell">Generell</option>
+                <option value="support">Support</option>
+                <option value="ideen">Ideen</option>
+            </select>
+            <textarea id="message" placeholder="Nachricht eingeben" required></textarea>
             <input type="submit" value="Senden">
+        </form>
+        
+        <form class="topic-form" onsubmit="createTopic(event)">
+            <select id="topic-category">
+                <option value="generell">Generell</option>
+                <option value="support">Support</option>
+                <option value="ideen">Ideen</option>
+            </select>
+            <input type="text" id="topic-title" placeholder="Thema Titel" required>
+            <textarea id="topic-content" placeholder="Thema Inhalt" required></textarea>
+            <input type="submit" value="Thema erstellen">
         </form>
     </div>
 
     <script>
         function sendMessage(event) {
             event.preventDefault();
+            const category = document.getElementById('category').value;
             const messageInput = document.getElementById('message');
-            const chatBox = document.getElementById('chat-box');
+            const chatBox = document.getElementById(category + '-chat-box');
             const message = messageInput.value;
 
             const newMessage = document.createElement('p');
@@ -84,6 +119,29 @@
             chatBox.appendChild(newMessage);
 
             messageInput.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function createTopic(event) {
+            event.preventDefault();
+            const category = document.getElementById('topic-category').value;
+            const topicTitle = document.getElementById('topic-title').value;
+            const topicContent = document.getElementById('topic-content').value;
+            const chatBox = document.getElementById(category + '-chat-box');
+
+            const newTopic = document.createElement('div');
+            const newTopicTitle = document.createElement('h3');
+            const newTopicContent = document.createElement('p');
+
+            newTopicTitle.textContent = topicTitle;
+            newTopicContent.textContent = topicContent;
+
+            newTopic.appendChild(newTopicTitle);
+            newTopic.appendChild(newTopicContent);
+            chatBox.appendChild(newTopic);
+
+            document.getElementById('topic-title').value = '';
+            document.getElementById('topic-content').value = '';
             chatBox.scrollTop = chatBox.scrollHeight;
         }
     </script>
