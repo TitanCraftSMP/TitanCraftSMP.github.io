@@ -7,68 +7,120 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f4f4f4;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: #fff;
         }
         .forum-container {
-            background: white;
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             width: 600px;
             max-width: 100%;
+            color: #fff;
         }
         h1 {
             text-align: center;
-            color: #333;
+            color: #f39c12;
         }
-        .section {
-            margin-bottom: 20px;
-        }
-        .section h2 {
-            color: #555;
-        }
-        .section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .section ul li {
-            background: #eee;
-            margin: 10px 0;
-            padding: 10px;
+        .chat-container {
+            border: 1px solid #ccc;
             border-radius: 4px;
+            padding: 10px;
+            height: 300px;
+            overflow-y: auto;
+            background: #fff;
+            color: #000;
+        }
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+        .chat-message:last-child {
+            border-bottom: none;
+        }
+        .chat-input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .chat-button {
+            width: 100%;
+            background-color: #f39c12;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .chat-button:hover {
+            background-color: #e67e22;
+        }
+        .username-display {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
     <div class="forum-container">
         <h1>Forum</h1>
-        <div class="section">
-            <h2>Generell</h2>
-            <ul>
-                <li>Thread 1</li>
-                <li>Thread 2</li>
-            </ul>
-        </div>
-        <div class="section">
-            <h2>Support</h2>
-            <ul>
-                <li>Thread 1</li>
-                <li>Thread 2</li>
-            </ul>
-        </div>
-        <div class="section">
-            <h2>Ideen</h2>
-            <ul>
-                <li>Thread 1</li>
-                <li>Thread 2</li>
-            </ul>
-        </div>
+        <div class="username-display" id="usernameDisplay"></div>
+        <div class="chat-container" id="chatContainer"></div>
+        <input type="text" id="chatInput" class="chat-input" placeholder="Ihre Nachricht...">
+        <button id="chatButton" class="chat-button">Senden</button>
     </div>
+
+    <script>
+        const currentUser = localStorage.getItem('currentUser');
+        if (!currentUser) {
+            alert('Bitte melden Sie sich an.');
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('usernameDisplay').textContent = `Angemeldet als: ${currentUser}`;
+
+        const chatContainer = document.getElementById('chatContainer');
+        const chatInput = document.getElementById('chatInput');
+        const chatButton = document.getElementById('chatButton');
+        const messages = JSON.parse(localStorage.getItem('messages')) || [];
+
+        function renderMessages() {
+            chatContainer.innerHTML = '';
+            messages.forEach(message => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chat-message';
+                messageDiv.textContent = `${message.username}: ${message.text}`;
+                chatContainer.appendChild(messageDiv);
+            });
+        }
+
+        chatButton.addEventListener('click', function() {
+            const messageText = chatInput.value.trim();
+            if (messageText) {
+                messages.push({ username: currentUser, text: messageText });
+                localStorage.setItem('messages', JSON.stringify(messages));
+                chatInput.value = '';
+                renderMessages();
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        });
+
+        renderMessages();
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    </script>
 </body>
 </html>
