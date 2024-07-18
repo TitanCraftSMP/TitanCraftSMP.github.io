@@ -74,6 +74,75 @@
             font-size: 1.2em;
         }
     </style>
+    <!-- Import Firebase scripts -->
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
+      import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyCTBBc6ophS0g2u7w7r8gcpaeSLIX7sr50",
+        authDomain: "forumsmp-a9e10.firebaseapp.com",
+        projectId: "forumsmp-a9e10",
+        storageBucket: "forumsmp-a9e10.appspot.com",
+        messagingSenderId: "89773974456",
+        appId: "1:89773974456:web:055e62921194f3001a254d",
+        measurementId: "G-YYPPLSTMRH"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const db = getDatabase(app);
+
+      // Your existing code
+      const currentUser = localStorage.getItem('currentUser');
+      if (!currentUser) {
+          alert('Bitte melden Sie sich an.');
+          window.location.href = 'index.html';
+      }
+
+      document.getElementById('usernameDisplay').textContent = `Angemeldet als: ${currentUser}`;
+
+      const chatContainer = document.getElementById('chatContainer');
+      const chatInput = document.getElementById('chatInput');
+      const chatButton = document.getElementById('chatButton');
+
+      function renderMessages(messages) {
+          chatContainer.innerHTML = '';
+          messages.forEach(message => {
+              const messageDiv = document.createElement('div');
+              messageDiv.className = 'chat-message';
+              messageDiv.textContent = `${message.username}: ${message.text}`;
+              chatContainer.appendChild(messageDiv);
+          });
+      }
+
+      const messagesRef = ref(db, 'messages');
+
+      onValue(messagesRef, (snapshot) => {
+          const messages = snapshot.val() ? Object.values(snapshot.val()) : [];
+          renderMessages(messages);
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+      });
+
+      chatButton.addEventListener('click', function() {
+          const messageText = chatInput.value.trim();
+          if (messageText) {
+              const newMessage = { username: currentUser, text: messageText };
+              push(messagesRef, newMessage);
+              chatInput.value = '';
+          }
+      });
+
+      chatInput.addEventListener('keypress', function(event) {
+          if (event.key === 'Enter') {
+              chatButton.click();
+          }
+      });
+    </script>
 </head>
 <body>
     <div class="forum-container">
@@ -83,64 +152,5 @@
         <input type="text" id="chatInput" class="chat-input" placeholder="Ihre Nachricht...">
         <button id="chatButton" class="chat-button">Senden</button>
     </div>
-
-    <script>
-        const currentUser = localStorage.getItem('currentUser');
-        if (!currentUser) {
-            alert('Bitte melden Sie sich an.');
-            window.location.href = 'index.html';
-        }
-
-        document.getElementById('usernameDisplay').textContent = `Angemeldet als: ${currentUser}`;
-
-        const chatContainer = document.getElementById('chatContainer');
-        const chatInput = document.getElementById('chatInput');
-        const chatButton = document.getElementById('chatButton');
-        let messages = JSON.parse(localStorage.getItem('messages')) || [];
-
-        function renderMessages() {
-            chatContainer.innerHTML = '';
-            messages.forEach(message => {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'chat-message';
-                messageDiv.textContent = `${message.username}: ${message.text}`;
-                chatContainer.appendChild(messageDiv);
-            });
-        }
-
-        function syncMessages() {
-            const currentMessages = JSON.parse(localStorage.getItem('messages')) || [];
-            if (currentMessages.length !== messages.length) {
-                messages = currentMessages;
-                renderMessages();
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-        }
-
-        renderMessages();
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-
-        chatButton.addEventListener('click', function() {
-            const messageText = chatInput.value.trim();
-            if (messageText) {
-                const newMessage = { username: currentUser, text: messageText };
-                messages.push(newMessage);
-                localStorage.setItem('messages', JSON.stringify(messages));
-                chatInput.value = '';
-                renderMessages();
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-                syncMessages();
-            }
-        });
-
-        chatInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                chatButton.click();
-            }
-        });
-
-        // Periodically check for new messages in localStorage
-        setInterval(syncMessages, 1000); // Check every second for new messages
-    </script>
 </body>
 </html>
