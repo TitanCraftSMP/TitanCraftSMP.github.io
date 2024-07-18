@@ -21,8 +21,9 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 300px;
         }
-        input[type="text"], input[type="password"], input[type="date"] {
+        input[type="text"], input[type="password"], input[type="date"], input[type="email"] {
             width: 100%;
             padding: 10px;
             margin: 5px 0 20px 0;
@@ -45,46 +46,84 @@
         input[type="submit"]:hover {
             background-color: #e67e22;
         }
+        .toggle-link {
+            color: #f39c12;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Anmeldeformular</h2>
-        <form id="loginForm" action="/submit" method="post" onsubmit="return handleLogin(event)">
+        <form id="loginForm" style="display: block;">
             <label for="username">Benutzername</label>
             <input type="text" id="username" name="username" required>
             <label for="password">Passwort</label>
             <input type="password" id="password" name="password" required>
-            <label for="birthdate">Geburtsdatum</label>
-            <input type="date" id="birthdate" name="birthdate" required>
             <input type="submit" value="Anmelden">
         </form>
+        <form id="registerForm" style="display: none;">
+            <label for="username">Benutzername</label>
+            <input type="text" id="reg-username" name="username" required>
+            <label for="email">E-Mail</label>
+            <input type="email" id="reg-email" name="email" required>
+            <label for="password">Passwort</label>
+            <input type="password" id="reg-password" name="password" required>
+            <label for="birthdate">Geburtsdatum</label>
+            <input type="date" id="reg-birthdate" name="birthdate" required>
+            <input type="submit" value="Registrieren">
+        </form>
+        <a id="toggleForm" class="toggle-link">Registrieren</a>
     </div>
 
     <script>
-        async function handleLogin(event) {
-            event.preventDefault();
-            
-            const form = document.getElementById('loginForm');
-            const formData = new FormData(form);
-            
-            try {
-                const response = await fetch('/submit', {
-                    method: 'POST',
-                    body: formData,
-                    redirect: 'follow'
-                });
-
-                if (response.redirected) {
-                    window.location.href = '/CreateForum.html'; // Weiterleitung zur CreateForum.html Seite
-                } else {
-                    alert('Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten.');
-                }
-            } catch (error) {
-                console.error('Anmeldefehler:', error);
-                alert('Es ist ein Fehler bei der Anmeldung aufgetreten.');
+        document.getElementById('toggleForm').addEventListener('click', function() {
+            const loginForm = document.getElementById('loginForm');
+            const registerForm = document.getElementById('registerForm');
+            if (loginForm.style.display === 'none') {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                this.textContent = 'Registrieren';
+            } else {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                this.textContent = 'Anmelden';
             }
-        }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.username === username && user.password === password);
+            if (user) {
+                window.location.href = 'CreateForum.html';
+            } else {
+                alert('Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten.');
+            }
+        });
+
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('reg-username').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const birthdate = document.getElementById('reg-birthdate').value;
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const userExists = users.some(user => user.username === username);
+            if (userExists) {
+                alert('Benutzername existiert bereits. Bitte wählen Sie einen anderen Benutzernamen.');
+            } else {
+                users.push({ username, email, password, birthdate });
+                localStorage.setItem('users', JSON.stringify(users));
+                alert('Registrierung erfolgreich. Sie können sich jetzt anmelden.');
+                document.getElementById('toggleForm').click();
+            }
+        });
     </script>
 </body>
 </html>
