@@ -74,77 +74,64 @@
             font-size: 1.2em;
         }
     </style>
-    <!-- Firebase SDKs importieren -->
-    <script type="module">
-        // Importieren der benötigten Funktionen aus den Firebase-SDKs
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
-        import { getDatabase, ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
-
-        // Firebase-Konfiguration für Ihre Webanwendung
-        const firebaseConfig = {
-            apiKey: "AIzaSyCTBBc6ophS0g2u7w7r8gcpaeSLIX7sr50",
-            authDomain: "forumsmp-a9e10.firebaseapp.com",
-            projectId: "forumsmp-a9e10",
-            storageBucket: "forumsmp-a9e10.appspot.com",
-            messagingSenderId: "89773974456",
-            appId: "1:89773974456:web:055e62921194f3001a254d",
-            measurementId: "G-YYPPLSTMRH"
-        };
-
-        // Initialisieren der Firebase-App
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-
-        // Referenz zur Firebase Realtime Database
-        const db = getDatabase(app);
-        const messagesRef = ref(db, 'messages');
-
-        // Funktion zum Rendern von Nachrichten
-        function renderMessages(messages) {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
             const chatContainer = document.getElementById('chatContainer');
-            chatContainer.innerHTML = '';
-            messages.forEach(message => {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'chat-message';
-                messageDiv.textContent = `${message.username}: ${message.text}`;
-                chatContainer.appendChild(messageDiv);
-            });
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
+            const chatInput = document.getElementById('chatInput');
+            const chatButton = document.getElementById('chatButton');
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            let messages = [];
 
-        // Nachrichten beim Laden der Seite rendern
-        onValue(messagesRef, (snapshot) => {
-            const messages = snapshot.val() ? Object.values(snapshot.val()) : [];
-            renderMessages(messages);
-        });
-
-        // Nachricht senden
-        function sendMessage() {
+            // Check if currentUser is set in localStorage
             const currentUser = localStorage.getItem('currentUser');
             if (!currentUser) {
                 alert('Bitte melden Sie sich an.');
                 window.location.href = 'index.html';
-                return;
+            } else {
+                usernameDisplay.textContent = `Angemeldet als: ${currentUser}`;
             }
-            const chatInput = document.getElementById('chatInput');
-            const messageText = chatInput.value.trim();
-            if (messageText) {
-                const newMessage = { username: currentUser, text: messageText };
-                push(messagesRef, newMessage);
-                chatInput.value = '';
+
+            // Function to render messages
+            function renderMessages() {
+                chatContainer.innerHTML = '';
+                messages.forEach(message => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'chat-message';
+                    messageDiv.textContent = `${message.username}: ${message.text}`;
+                    chatContainer.appendChild(messageDiv);
+                });
+                // Scroll to bottom of chat
+                chatContainer.scrollTop = chatContainer.scrollHeight;
             }
-        }
 
-        // Event Listener für den Senden-Button
-        const chatButton = document.getElementById('chatButton');
-        chatButton.addEventListener('click', sendMessage);
+            // Initial render of messages
+            renderMessages();
 
-        // Event Listener für die Eingabetaste
-        const chatInput = document.getElementById('chatInput');
-        chatInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                sendMessage();
+            // Event listener for send button
+            chatButton.addEventListener('click', function() {
+                const messageText = chatInput.value.trim();
+                if (messageText) {
+                    const newMessage = { username: currentUser, text: messageText };
+                    messages.push(newMessage);
+                    // Update localStorage with new messages
+                    localStorage.setItem('messages', JSON.stringify(messages));
+                    chatInput.value = '';
+                    renderMessages();
+                }
+            });
+
+            // Event listener for enter key in chatInput
+            chatInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    chatButton.click();
+                }
+            });
+
+            // Load messages from localStorage on page load
+            const storedMessages = localStorage.getItem('messages');
+            if (storedMessages) {
+                messages = JSON.parse(storedMessages);
+                renderMessages();
             }
         });
     </script>
