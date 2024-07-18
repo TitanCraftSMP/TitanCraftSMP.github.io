@@ -96,7 +96,7 @@
         const chatContainer = document.getElementById('chatContainer');
         const chatInput = document.getElementById('chatInput');
         const chatButton = document.getElementById('chatButton');
-        const messages = JSON.parse(localStorage.getItem('messages')) || [];
+        let messages = JSON.parse(localStorage.getItem('messages')) || [];
 
         function renderMessages() {
             chatContainer.innerHTML = '';
@@ -108,10 +108,14 @@
             });
         }
 
+        renderMessages();
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+
         chatButton.addEventListener('click', function() {
             const messageText = chatInput.value.trim();
             if (messageText) {
-                messages.push({ username: currentUser, text: messageText });
+                const newMessage = { username: currentUser, text: messageText };
+                messages.push(newMessage);
                 localStorage.setItem('messages', JSON.stringify(messages));
                 chatInput.value = '';
                 renderMessages();
@@ -125,8 +129,15 @@
             }
         });
 
-        renderMessages();
-        chatContainer.scrollTop = chatContainer.scrollHeight;
+        // Periodically check for new messages in localStorage (optional)
+        setInterval(() => {
+            const currentMessages = JSON.parse(localStorage.getItem('messages')) || [];
+            if (currentMessages.length !== messages.length) {
+                messages = currentMessages;
+                renderMessages();
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        }, 1000); // Check every second for new messages
     </script>
 </body>
 </html>
