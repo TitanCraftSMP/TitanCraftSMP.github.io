@@ -74,67 +74,6 @@
             font-size: 1.2em;
         }
     </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const chatContainer = document.getElementById('chatContainer');
-            const chatInput = document.getElementById('chatInput');
-            const chatButton = document.getElementById('chatButton');
-            const usernameDisplay = document.getElementById('usernameDisplay');
-            let messages = [];
-
-            // Check if currentUser is set in localStorage
-            const currentUser = localStorage.getItem('currentUser');
-            if (!currentUser) {
-                alert('Bitte melden Sie sich an.');
-                window.location.href = 'index.html';
-            } else {
-                usernameDisplay.textContent = `Angemeldet als: ${currentUser}`;
-            }
-
-            // Function to render messages
-            function renderMessages() {
-                chatContainer.innerHTML = '';
-                messages.forEach(message => {
-                    const messageDiv = document.createElement('div');
-                    messageDiv.className = 'chat-message';
-                    messageDiv.textContent = `${message.username}: ${message.text}`;
-                    chatContainer.appendChild(messageDiv);
-                });
-                // Scroll to bottom of chat
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-
-            // Initial render of messages
-            renderMessages();
-
-            // Event listener for send button
-            chatButton.addEventListener('click', function() {
-                const messageText = chatInput.value.trim();
-                if (messageText) {
-                    const newMessage = { username: currentUser, text: messageText };
-                    messages.push(newMessage);
-                    // Update localStorage with new messages
-                    localStorage.setItem('messages', JSON.stringify(messages));
-                    chatInput.value = '';
-                    renderMessages();
-                }
-            });
-
-            // Event listener for enter key in chatInput
-            chatInput.addEventListener('keypress', function(event) {
-                if (event.key === 'Enter') {
-                    chatButton.click();
-                }
-            });
-
-            // Load messages from localStorage on page load
-            const storedMessages = localStorage.getItem('messages');
-            if (storedMessages) {
-                messages = JSON.parse(storedMessages);
-                renderMessages();
-            }
-        });
-    </script>
 </head>
 <body>
     <div class="forum-container">
@@ -144,5 +83,80 @@
         <input type="text" id="chatInput" class="chat-input" placeholder="Ihre Nachricht eingeben...">
         <button id="chatButton" class="chat-button">Senden</button>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatContainer = document.getElementById('chatContainer');
+            const chatInput = document.getElementById('chatInput');
+            const chatButton = document.getElementById('chatButton');
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const currentUser = localStorage.getItem('currentUser');
+
+            if (!currentUser) {
+                alert('Bitte melden Sie sich an.');
+                window.location.href = 'index.html';
+            } else {
+                usernameDisplay.textContent = `Angemeldet als: ${currentUser}`;
+            }
+
+            // Funktion zum Rendern von Nachrichten
+            function renderMessages(messages) {
+                chatContainer.innerHTML = '';
+                messages.forEach(message => {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'chat-message';
+                    messageDiv.textContent = `${message.username}: ${message.text}`;
+                    chatContainer.appendChild(messageDiv);
+                });
+                // Scrollen zum unteren Ende des Chats
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+
+            // Nachrichten lokal speichern
+            let messages = JSON.parse(localStorage.getItem('messages')) || [];
+
+            // Nachricht senden
+            function sendMessage() {
+                const messageText = chatInput.value.trim();
+                if (messageText) {
+                    const newMessage = { username: currentUser, text: messageText };
+                    messages.push(newMessage);
+                    localStorage.setItem('messages', JSON.stringify(messages));
+                    chatInput.value = '';
+                    broadcastMessage(newMessage);
+                    renderMessages(messages);
+                }
+            }
+
+            // Event Listener für den Senden-Button
+            chatButton.addEventListener('click', sendMessage);
+
+            // Event Listener für die Eingabetaste
+            chatInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // Funktion zum Senden einer Nachricht über Broadcast Channel API
+            function broadcastMessage(message) {
+                const broadcastChannel = new BroadcastChannel('chat_channel');
+                broadcastChannel.postMessage(message);
+            }
+
+            // Event Listener für eingehende Nachrichten über Broadcast Channel API
+            const receiveChannel = new BroadcastChannel('chat_channel');
+            receiveChannel.onmessage = function(event) {
+                const newMessage = event.data;
+                if (newMessage.username !== currentUser) {
+                    messages.push(newMessage);
+                    renderMessages(messages);
+                }
+            };
+
+            // Initialisierung der Chat-Ansicht
+            renderMessages(messages);
+        });
+    </script>
 </body>
 </html>
