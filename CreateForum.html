@@ -129,7 +129,7 @@
             }
         });
 
-        // Periodically check for new messages in localStorage (optional)
+        // Periodically check for new messages in localStorage
         setInterval(() => {
             const currentMessages = JSON.parse(localStorage.getItem('messages')) || [];
             if (currentMessages.length !== messages.length) {
