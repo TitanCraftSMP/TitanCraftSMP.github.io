@@ -3,141 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forum</title>
+    <title>Create Forum</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
-            margin: 0;
-            padding: 0;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            color: #fff;
-        }
-        .forum-container {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            width: 600px;
-            max-width: 100%;
-            color: #fff;
-        }
-        h1 {
-            text-align: center;
-            color: #f39c12;
+            margin: 0;
         }
         .chat-container {
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            padding: 10px;
-            height: 300px;
-            overflow-y: auto;
-            background: #fff;
-            color: #000;
-        }
-        .chat-message {
-            margin-bottom: 10px;
-            padding: 5px;
-            border-bottom: 1px solid #ddd;
-        }
-        .chat-message:last-child {
-            border-bottom: none;
-        }
-        .chat-input {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        .chat-button {
-            width: 100%;
-            background-color: #f39c12;
-            color: white;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        .chat-button:hover {
-            background-color: #e67e22;
-        }
-        .username-display {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
             text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.2em;
+        }
+        .chat-container input, .chat-container textarea, .chat-container button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
         }
     </style>
 </head>
 <body>
-    <div class="forum-container">
-        <h1>Forum</h1>
-        <div class="username-display" id="usernameDisplay"></div>
-        <div class="chat-container" id="chatContainer"></div>
-        <input type="text" id="chatInput" class="chat-input" placeholder="Ihre Nachricht...">
-        <button id="chatButton" class="chat-button">Senden</button>
+    <div class="chat-container">
+        <h2>Chat</h2>
+        <input type="text" id="username" placeholder="Ihr Benutzername">
+        <textarea id="message" placeholder="Ihre Nachricht"></textarea>
+        <button onclick="sendMessage()">Senden</button>
     </div>
-
     <script>
-        const currentUser = localStorage.getItem('currentUser');
-        if (!currentUser) {
-            alert('Bitte melden Sie sich an.');
-            window.location.href = 'index.html';
-        }
+        async function sendMessage() {
+            const username = document.getElementById('username').value;
+            const message = document.getElementById('message').value;
 
-        document.getElementById('usernameDisplay').textContent = `Angemeldet als: ${currentUser}`;
-
-        const chatContainer = document.getElementById('chatContainer');
-        const chatInput = document.getElementById('chatInput');
-        const chatButton = document.getElementById('chatButton');
-        let messages = JSON.parse(localStorage.getItem('messages')) || [];
-
-        function renderMessages() {
-            chatContainer.innerHTML = '';
-            messages.forEach(message => {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'chat-message';
-                messageDiv.textContent = `${message.username}: ${message.text}`;
-                chatContainer.appendChild(messageDiv);
+            const response = await fetch('http://localhost:3000/send-message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, message })
             });
+
+            if (response.ok) {
+                alert('Nachricht gesendet');
+            } else {
+                alert('Fehler beim Senden der Nachricht');
+            }
         }
-
-        renderMessages();
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-
-        chatButton.addEventListener('click', function() {
-            const messageText = chatInput.value.trim();
-            if (messageText) {
-                const newMessage = { username: currentUser, text: messageText };
-                messages.push(newMessage);
-                localStorage.setItem('messages', JSON.stringify(messages));
-                chatInput.value = '';
-                renderMessages();
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-        });
-
-        chatInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                chatButton.click();
-            }
-        });
-
-        // Periodically check for new messages in localStorage (optional)
-        setInterval(() => {
-            const currentMessages = JSON.parse(localStorage.getItem('messages')) || [];
-            if (currentMessages.length !== messages.length) {
-                messages = currentMessages;
-                renderMessages();
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-        }, 1000); // Check every second for new messages
     </script>
 </body>
 </html>
