@@ -108,6 +108,15 @@
             });
         }
 
+        function syncMessages() {
+            const currentMessages = JSON.parse(localStorage.getItem('messages')) || [];
+            if (currentMessages.length !== messages.length) {
+                messages = currentMessages;
+                renderMessages();
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+        }
+
         renderMessages();
         chatContainer.scrollTop = chatContainer.scrollHeight;
 
@@ -120,6 +129,7 @@
                 chatInput.value = '';
                 renderMessages();
                 chatContainer.scrollTop = chatContainer.scrollHeight;
+                syncMessages();
             }
         });
 
@@ -130,14 +140,7 @@
         });
 
         // Periodically check for new messages in localStorage
-        setInterval(() => {
-            const currentMessages = JSON.parse(localStorage.getItem('messages')) || [];
-            if (currentMessages.length !== messages.length) {
-                messages = currentMessages;
-                renderMessages();
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-        }, 1000); // Check every second for new messages
+        setInterval(syncMessages, 1000); // Check every second for new messages
     </script>
 </body>
 </html>
