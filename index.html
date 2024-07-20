@@ -7,167 +7,200 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Alle vorhandenen CSS-Stile hier */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            overflow: hidden;
+        }
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        .nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        .nav-menu li {
+            margin-left: 20px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+        .btn {
+            background: #f39c12;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #e67e22;
+        }
+        .section {
+            padding: 60px 0;
+            display: none;
+        }
+        .about, .server-info, .news, .community, .support, .contact {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px 20px;
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            height: 6px;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+        footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            text-align: center;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                right: 0;
+                background: rgba(0, 0, 0, 0.8);
+                width: 100%;
+                text-align: center;
+            }
+            .nav-menu.show {
+                display: flex;
+            }
+            .nav-menu li {
+                margin: 20px 0;
+            }
+            .hamburger {
+                display: block;
+                cursor: pointer;
+            }
+            .logo, .nav-menu, .hamburger {
+                margin-left: 20px;
+            }
+        }
+        @media (min-width: 769px) {
+            .hamburger {
+                display: none;
+            }
+        }
+        .hamburger {
+            font-size: 2rem;
+            color: #fff;
+        }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    background: url('background.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: #fff;
-    overflow: hidden; 
-}
-
-header {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo img {
-    height: 50px;
-}
-
-nav {
-    display: flex;
-    align-items: center;
-}
-
-.nav-menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.nav-menu li {
-    margin-left: 20px;
-}
-
-.nav-menu a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.hero {
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.hero h1 {
-    font-size: 4rem;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 1.5rem;
-    margin-bottom: 40px;
-}
-
-.btn {
-    background: #f39c12;
-    color: #fff;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background 0.3s;
-}
-
-.btn:hover {
-    background: #e67e22;
-}
-
-.section {
-    padding: 60px 0;
-    display: none; 
-}
-
-.about, .server-info, .news, .community, .support, .contact {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 40px 20px;
-    border-radius: 10px;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2.5rem;
-    position: relative; 
-    z-index: 1; 
-    padding: 20px;
-}
-
-h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    height: 6px; 
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: -1; 
-}
-
-footer {
-    background: rgba(0, 0, 0, 0.9);
-    padding: 20px 0;
-    text-align: center;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-}
-
-@media (max-width: 768px) {
-    .nav-menu {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        right: 0;
-        background: rgba(0, 0, 0, 0.8);
-        width: 100%;
-        text-align: center;
-    }
-    .nav-menu.show {
-        display: flex;
-    }
-    .nav-menu li {
-        margin: 20px 0;
-    }
-    .hamburger {
-        display: block;
-        cursor: pointer;
-    }
-    .logo, .nav-menu, .hamburger {
-        margin-left: 20px;
-    }
-}
-
-@media (min-width: 769px) {
-    .hamburger {
-        display: none;
-    }
-}
-
-.hamburger {
-    font-size: 2rem;
-    color: #fff;
-}
-
+        .team-member {
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: #f39c12;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: left;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -202,11 +235,11 @@ footer {
             <h2>Über uns</h2>
             <p>Erfahre mehr über das Team und unsere Mission</p>
             <div class="team">
-                <p><strong>Inhaber:</strong> Jannis, Jürgen</p>
-                <p><strong>Admins:</strong> c4egtdro</p>
-                <p><strong>Builder:</strong> Ehrenmann310e</p>
-                <p><strong>Supporter:</strong> Bacon</p>
-                <p><strong>T-Supporter:</strong> Nunu, Simon, Bacon</p>
+                <p><strong>Inhaber:</strong> <span class="team-member" data-index="0">Jannis</span>, <span class="team-member" data-index="1">Jürgen</span></p>
+                <p><strong>Admins:</strong> <span class="team-member" data-index="2">c4egtdro</span></p>
+                <p><strong>Builder:</strong> <span class="team-member" data-index="3">Ehrenmann310e</span></p>
+                <p><strong>Supporter:</strong> <span class="team-member" data-index="4">Bacon</span></p>
+                <p><strong>T-Supporter:</strong> <span class="team-member" data-index="5">Nunu</span>, <span class="team-member" data-index="6">Simon</span>, <span class="team-member" data-index="4">Bacon</span></p>
             </div>
         </div>
     </section>
@@ -222,7 +255,7 @@ footer {
                 </div>
                 <div class="info-item">
                     <h3>Version</h3>
-                    <p>Hauptversion: 1.20.1<br>Beitritt möglich von 1.8 bis 1.20.1</p>
+                    <p>Hauptversion: 1.20.1<br>Beitritt möglich von 1.8 bis 1.21</p>
                 </div>
                 <div class="info-item">
                     <h3>Regeln</h3>
@@ -236,57 +269,55 @@ footer {
         </div>
     </section>
 
-<section id="news" class="news section">
-    <div class="container">
-        <h2>News & Updates</h2>
-        <div class="updates">
-            <div class="update-item">
-                <h3>Update: Neuer Server 24/7</h3>
-                <p>Hinzugefügt:</p>
-                <ul>
-                    <li>Neuer Server 24/7</li>
-                    <li>Clan Plugin</li>
-                    <li>Scoreboard</li>
-                </ul>
-                <p>Entfernt:</p>
-                <ul>
-                    <li>Alter Server</li>
-                </ul>
-                <p>Bei der Übertragung der SMP Welt von Aternos auf den neuen Server ist ein Fehler aufgetreten, der es nicht erlaubt, die SMP Welt zu exportieren. Ihr werdet neu anfangen müssen. Wenn ihr größere Gebäude hattet, erstellt einfach ein Ticket, dann werde ich sie per Schematic exportieren. Eure Items sollten allerdings erhalten geblieben sein.</p>
-            </div>
-            <div class="update-item">
-                <h3>Update: Bank Plugin und Freunde Plugin</h3>
-                <p>Hinzugefügt:</p>
-                <ul>
-                    <li>Bank Plugin</li>
-                    <li>Freunde Plugin</li>
-                    <li>Custom Tab</li>
-                </ul>
-                <p>Entfernt:</p>
-                <ul>
-                    <li>Deluxehub</li>
-                    <li>Scoreboard</li>
-                </ul>
-                <p>Für alle, die Simple Voice Chat benutzen wollen, schaut euch unbedingt dieses Video an: <a href="https://youtu.be/W_98uqbjepE">https://youtu.be/W_98uqbjepE</a></p>
+    <section id="news" class="news section">
+        <div class="container">
+            <h2>News & Updates</h2>
+            <div class="updates">
+                <div class="update-item">
+                    <h3>Update: Neuer Server 24/7</h3>
+                    <p>Hinzugefügt:</p>
+                    <ul>
+                        <li>Neuer Server 24/7</li>
+                        <li>Clan Plugin</li>
+                        <li>Scoreboard</li>
+                    </ul>
+                    <p>Entfernt:</p>
+                    <ul>
+                        <li>Alter Server</li>
+                    </ul>
+                    <p>Bei der Übertragung der SMP Welt von Aternos auf den neuen Server ist ein Fehler aufgetreten, der es nicht erlaubt, die SMP Welt zu exportieren. Ihr werdet neu anfangen müssen. Wenn ihr größere Gebäude hattet, erstellt einfach ein Ticket, dann werde ich sie per Schematic exportieren. Eure Items sollten allerdings erhalten geblieben sein.</p>
+                </div>
+                <div class="update-item">
+                    <h3>Update: Bank Plugin und Freunde Plugin</h3>
+                    <p>Hinzugefügt:</p>
+                    <ul>
+                        <li>Bank Plugin</li>
+                        <li>Freunde Plugin</li>
+                        <li>Custom Tab</li>
+                    </ul>
+                    <p>Entfernt:</p>
+                    <ul>
+                        <li>Deluxehub</li>
+                        <li>Scoreboard</li>
+                    </ul>
+                    <p>Für alle, die Simple Voice Chat benutzen wollen, schaut euch unbedingt dieses Video an: <a href="https://youtu.be/W_98uqbjepE">https://youtu.be/W_98uqbjepE</a></p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-
-<section id="community" class="community section">
-    <div class="container">
-        <h2>Community</h2>
-        <p>Willkommen in unserer lebendigen Community bei Titancraft! Hier hast du die Möglichkeit, dich mit anderen Spielern zu verbinden, neue Freundschaften zu schließen und gemeinsam spannende Abenteuer zu erleben.</p>
-        <p>Trete unserem Discord-Server bei, um in Echtzeit mit anderen Mitgliedern zu kommunizieren und an Community-Events teilzunehmen. Unser Forum bietet einen Raum für ausführlichere Diskussionen, Tutorials und den Austausch von Bauideen.</p>
-        <div class="community-links">
-            <a href="https://discord.com/invite/ZZYZhHVTMB" class="btn">Unser Discord</a>
+    <section id="community" class="community section">
+        <div class="container">
+            <h2>Community</h2>
+            <p>Willkommen in unserer lebendigen Community bei Titancraft! Hier hast du die Möglichkeit, dich mit anderen Spielern zu verbinden, neue Freundschaften zu schließen und gemeinsam spannende Abenteuer zu erleben.</p>
+            <p>Trete unserem Discord-Server bei, um in Echtzeit mit anderen Mitgliedern zu kommunizieren und an Community-Events teilzunehmen. Unser Forum bietet einen Raum für ausführlichere Diskussionen, Tutorials und den Austausch von Bauideen.</p>
+            <div class="community-links">
+                <a href="https://discord.com/invite/ZZYZhHVTMB" class="btn">Unser Discord</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-
-<section id="support" class="support section">
+    <section id="support" class="support section">
     <div class="container">
         <h2>Häufig gestellte Fragen (FAQ)</h2>
         <div class="support-info">
@@ -300,58 +331,71 @@ footer {
             <p>Ja, Bewerbungen sind möglich. Aktuell suchen wir jedoch keine neuen Supporter.</p>
         </div>
     </div>
-</section>
+    </section>
 
-
-<section id="contact" class="contact section">
-    <div class="container">
-        <h2>Kontakt</h2>
-        <p>Für Anfragen oder weitere Informationen, besuche unsere Social-Media-Profile:</p>
-        <div class="contact-info">
-            <h3>Social Media</h3>
-            <ul>
-                <li><strong>Discord:</strong> <a href="https://discord.gg/ZZYZhHVTMB">discord.gg/ZZYZhHVTMB</a></li>
-                <li><strong>Shop:</strong> <a href="https://inwartung.com">inwartung.com</a></li>
-                <li><strong>Webseite:</strong> <a href="https://inwartung.com">inwartung.com</a></li>
-                <li><strong>Youtube:</strong> <a href="https://youtube.com/@t1tancraftsmp?feature=shared">youtube.com/@t1tancraftsmp?feature=shared</a></li>
-            </ul>
+    <section id="contact" class="contact section">
+        <div class="container">
+            <h2>Kontakt</h2>
+            <p>Für Anfragen oder weitere Informationen, besuche unsere Social-Media-Profile:</p>
+            <div class="contact-info">
+                <h3>Social Media</h3>
+                <ul>
+                    <li><strong>Discord:</strong> <a href="https://discord.gg/ZZYZhHVTMB">discord.gg/ZZYZhHVTMB</a></li>
+                    <li><strong>Shop:</strong> <a href="https://inwartung.com">inwartung.com</a></li>
+                    <li><strong>Webseite:</strong> <a href="https://inwartung.com">inwartung.com</a></li>
+                    <li><strong>Youtube:</strong> <a href="https://youtube.com/@t1tancraftsmp?feature=shared">youtube.com/@t1tancraftsmp?feature=shared</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</section>
-
-<footer>
-    <div class="container">
-        <p>&copy; 2024 Titancraft. Alle Rechte vorbehalten.</p>
-        <div class="social-media">
-            <ul>
-                <li><a href="https://discord.gg/ZZYZhHVTMB">Discord</a></li>
-                <li><a href="https://inwartung.com">Shop</a></li>
-                <li><a href="https://inwartung.com">Webseite</a></li>
-                <li><a href="https://youtube.com/@t1tancraftsmp?feature=shared">Youtube</a></li>
-            </ul>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Titancraft. Alle Rechte vorbehalten.</p>
+            <div class="social-media">
+                <ul>
+                    <li><a href="https://discord.gg/ZZYZhHVTMB">Discord</a></li>
+                    <li><a href="https://inwartung.com">Shop</a></li>
+                    <li><a href="https://inwartung.com">Webseite</a></li>
+                    <li><a href="https://youtube.com/@t1tancraftsmp?feature=shared">Youtube</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-
-
-<script>
-    const hamburger = document.getElementById('hamburger');
-    const navMenu = document.getElementById('nav-menu');
-
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('show');
-    });
-
-    function showSection(sectionId) {
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.display = 'none';
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+    
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
         });
-        document.getElementById(sectionId).style.display = 'block';
-    }
+    
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(sectionId).style.display = 'block';
+        }
+    
+        document.getElementById('home').style.display = 'flex';
+    </script>
 
-    document.getElementById('home').style.display = 'flex';
-</script>
+    <!-- Modal for profile display -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="profile-info">
+                <img id="profile-img" class="profile-img" src="" alt="Profile Picture">
+                <div>
+                    <h2 id="profile-name"></h2>
+                    <p id="profile-role"></p>
+                    <p id="profile-description"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <script src="scripts.js"></script>
 </body>
 </html>
