@@ -79,7 +79,7 @@
             padding: 60px 0;
             display: none;
         }
-        .about, .server-info, .news, .community, .support, .contact {
+        .about, .server-info, .news, .community, .support, .contact, .chapter2 {
             background: rgba(0, 0, 0, 0.8);
             padding: 40px 20px;
             border-radius: 10px;
@@ -198,6 +198,26 @@
             display: flex;
             align-items: center;
         }
+
+        .chapter2 {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 40px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .chapter2 img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .chapter2 h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .chapter2 p {
+            font-size: 1.2rem;
+        }
     </style>
 </head>
 <body>
@@ -214,6 +234,7 @@
                 <li><a onclick="showSection('community')">Community</a></li>
                 <li><a onclick="showSection('support')">Support</a></li>
                 <li><a onclick="showSection('contact')">Kontakt</a></li>
+                <li><a onclick="showSection('chapter2')">Titancraft Chapter 2</a></li>
                 <li><a href="Forum.html">Forum</a></li>
             </ul>
         </nav>        
@@ -237,7 +258,7 @@
                 <p><strong>SocialMedia:</strong> <span class="team-member" data-index="5">WinterStream497</span></p>
                 <p><strong>Builder:</strong> <span class="team-member" data-index="3">Ehrenmann310e</span></p>
                 <p><strong>Sr. Moderator:</strong> <span class="team-member" data-index="4">Bacon</span></p>
-                <p><strong>T-Supporter:</strong> <span class="team-member" data-index="5">Nunu</span></p>
+                <p><strong>Mod:</strong> <span class="team-member" data-index="6">Hoodie</span></p>
             </div>
         </div>
     </section>
@@ -245,11 +266,10 @@
     <section id="server-info" class="server-info section">
         <div class="container">
             <h2>Server-Informationen</h2>
-            <p>Gegründet am 23.06.2024</p>
-            <div class="info-grid">
+            <div class="info-items">
                 <div class="info-item">
-                    <h3>Server-IP</h3>
-                    <p>titancraft.g-portal.game</p>
+                    <h3>IP-Adresse</h3>
+                    <p>play.titancraft.de</p>
                 </div>
                 <div class="info-item">
                     <h3>Version</h3>
@@ -347,6 +367,21 @@
         </div>
     </section>
     
+    <section id="chapter2" class="chapter2 section">
+        <div class="container">
+            <h2>Titancraft Chapter 2</h2>
+            <img src="chapter2-banner.jpg" alt="Titancraft Chapter 2">
+            <h3>Willkommen zu Chapter 2</h3>
+            <p>Wir freuen uns, euch Titancraft Chapter 2 präsentieren zu können! Dieses neue Kapitel bringt viele spannende Änderungen und Features mit sich:</p>
+            <ul>
+                <li>Neue Map und Abenteuer</li>
+                <li>Erweiterte Community-Funktionen</li>
+                <li>Exklusive Events und Herausforderungen</li>
+            </ul>
+            <p>Seid dabei und erlebt die nächste Stufe von Titancraft mit uns!</p>
+        </div>
+    </section>
+
     <footer>
         <div class="container">
             <p>&copy; 2024 Titancraft. Alle Rechte vorbehalten.</p>
@@ -377,23 +412,43 @@
         }
     
         document.getElementById('home').style.display = 'flex';
+        
+        // Profile Modal functionality
+        document.querySelectorAll('.team-member').forEach(member => {
+            member.addEventListener('click', function() {
+                const index = this.getAttribute('data-index');
+                const profile = profiles[index];
+                document.getElementById('profile-name').innerText = profile.name;
+                document.getElementById('profile-role').innerText = profile.role;
+                document.getElementById('profile-description').innerText = profile.description;
+                document.getElementById('profile-img').src = profile.imgSrc;
+                document.getElementById('profileModal').style.display = 'flex';
+            });
+        });
+    
+        const modal = document.getElementById('profileModal');
+        const closeModal = document.querySelector('.modal .close');
+    
+        closeModal.onclick = function() {
+            modal.style.display = 'none';
+        }
+    
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Dummy profiles data
+        const profiles = [
+            { name: 'Jannis', role: 'Inhaber', description: 'Leiter des Servers', imgSrc: 'profile-jannis.jpg' },
+            { name: 'Jürgen', role: 'Inhaber', description: 'Co-Leiter des Servers', imgSrc: 'profile-juergen.jpg' },
+            { name: 'c4egtdro', role: 'Admin', description: 'Server-Administrator', imgSrc: 'profile-c4egtdro.jpg' },
+            { name: 'Ehrenmann310e', role: 'Builder', description: 'Haupt-Bauer des Servers', imgSrc: 'profile-ehrenmann310e.jpg' },
+            { name: 'Bacon', role: 'Sr. Moderator', description: 'Senior-Moderator', imgSrc: 'profile-bacon.jpg' },
+            { name: 'WinterStream497', role: 'SocialMedia', description: 'Verantwortlich für Social Media', imgSrc: 'profile-winterstream497.jpg' },
+            { name: 'Hoodie', role: 'Mod', description: 'Moderator des Servers', imgSrc: 'profile-hoodie.jpg' },
+        ];
     </script>
-
-    <!-- Modal for profile display -->
-    <div id="profileModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="profile-info">
-                <img id="profile-img" class="profile-img" src="" alt="Profile Picture">
-                <div>
-                    <h2 id="profile-name"></h2>
-                    <p id="profile-role"></p>
-                    <p id="profile-description"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="scripts.js"></script>
 </body>
 </html>
