@@ -1,43 +1,39 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-
-const app = express();
-const port = 3000;
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(session({ secret: 'secret-key', saveUninitialized: true, resave: true }));
-
-// Beispiel-Datenbank mit Benutzerdaten
-const users = {
-    user1: { password: 'password1', birthdate: '2000-01-01' },
-    user2: { password: 'password2', birthdate: '1995-05-05' },
-};
-
-// Anmelde-Route
-app.post('/submit', (req, res) => {
-    const { username, password, birthdate } = req.body;
-
-    if (users[username] && users[username].password === password && users[username].birthdate === birthdate) {
-        req.session.user = username;
-        res.redirect('/forum');
-    } else {
-        res.send('Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihre Anmeldedaten.');
-    }
+// Modal-Funktionalität
+document.querySelectorAll('.team-member').forEach(item => {
+    item.addEventListener('click', event => {
+        const index = event.target.getAttribute('data-index');
+        fetch(`profileData/${index}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('profile-img').src = data.img;
+                document.getElementById('profile-name').innerText = data.name;
+                document.getElementById('profile-role').innerText = data.role;
+                document.getElementById('profile-description').innerText = data.description;
+                document.getElementById('profileModal').style.display = 'flex';
+            });
+    });
 });
 
-// Forum-Seite
-app.get('/forum', (req, res) => {
-    if (req.session.user) {
-        res.sendFile(__dirname + '/forum.html');
-    } else {
-        res.redirect('/');
-    }
+// Schließen des Modals
+document.querySelector('.close').addEventListener('click', () => {
+    document.getElementById('profileModal').style.display = 'none';
 });
 
-// Serve static files
-app.use(express.static(__dirname));
+// Initiale Anzeige der Startseite
+document.getElementById('home').style.display = 'flex';
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+// Anzeige der Abschnitte
+function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'none';
+    });
+    document.getElementById(sectionId).style.display = 'block';
+}
+
+// Hamburger Menü
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('nav-menu');
+
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show');
 });
