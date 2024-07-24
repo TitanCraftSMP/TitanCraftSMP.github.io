@@ -76,10 +76,10 @@
             background: #e67e22;
         }
         .section {
-            padding: 60px 0;
+            padding: 60px 20px;
             display: none;
         }
-        .about, .server-info, .news, .community, .support, .contact, .chapter2 {
+        .about, .server-info, .news, .community, .support, .contact, .chapter2, .gems {
             background: rgba(0, 0, 0, 0.8);
             padding: 40px 20px;
             border-radius: 10px;
@@ -146,76 +146,17 @@
             font-size: 2rem;
             color: #fff;
         }
-
-        .team-member {
-            cursor: pointer;
-            margin: 10px 0;
-            font-size: 1.2em;
-            color: #f39c12;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            text-align: left;
-            border-radius: 8px;
-        }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-        }
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 20px;
-        }
-        .profile-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .chapter2 {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 40px 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .chapter2 img {
+        .chapter2 img, .gems img {
             max-width: 100%;
             height: auto;
             border-radius: 10px;
             margin-bottom: 20px;
         }
-        .chapter2 h3 {
+        .chapter2 h3, .gems h3 {
             font-size: 2rem;
             margin-bottom: 20px;
         }
-        .chapter2 p {
+        .chapter2 p, .gems p {
             font-size: 1.2rem;
         }
     </style>
@@ -235,7 +176,7 @@
                 <li><a onclick="showSection('support')">Support</a></li>
                 <li><a onclick="showSection('contact')">Kontakt</a></li>
                 <li><a onclick="showSection('chapter2')">Titancraft Chapter 2</a></li>
-                <li><a href="Forum.html">Forum</a></li>
+                <li><a onclick="showSection('gems')">Gems</a></li>
             </ul>
         </nav>        
     </header>
@@ -251,7 +192,7 @@
     <section id="about" class="about section">
         <div class="container">
             <h2>Über uns</h2>
-            <p>Erfahre mehr über das Team und unsere Mission</p>
+            <p>Erfahre mehr über das Team und unsere Mission.</p>
             <div class="team">
                 <p><strong>Inhaber:</strong> <span class="team-member" data-index="0">Jannis</span>, <span class="team-member" data-index="1">Jürgen</span></p>
                 <p><strong>Admins:</strong> <span class="team-member" data-index="2">c4egtdro</span></p>
@@ -282,7 +223,11 @@
             <p>Bleib auf dem Laufenden mit den neuesten Nachrichten und Updates.</p>
             <div class="news-item">
                 <h3>Neues Event: Sommerfest</h3>
-                <p>Das Sommerfest steht vor der Tür! Nimm an spannenden Events und Aktivitäten teil.</p>
+                <p>Vom 1. bis 7. August findet unser Sommerfest statt! Es erwarten dich spannende Events und tolle Preise.</p>
+            </div>
+            <div class="news-item">
+                <h3>Serverwartung am 15. Juli</h3>
+                <p>Am 15. Juli wird unser Server von 12:00 bis 14:00 Uhr gewartet. Bitte plane entsprechend.</p>
             </div>
         </div>
     </section>
@@ -320,15 +265,23 @@
             <img src="https://www.dropbox.com/scl/fi/f8hfwz7bex5yd1tgcjtw9/1586083_326593.jpg?rlkey=n9grz9wmskwqhwre8r5sgkh92&dl=0" alt="Chapter 2">
             <h3>Neues Kapitel, neue Abenteuer</h3>
             <p>Entdecke die neuesten Updates und Features in Chapter 2 von Titancraft. Erlebe epische Quests, neue Welten und eine Community, die immer weiter wächst.</p>
+        </div>
+    </section>
+
+    <section id="gems" class="gems section">
+        <div class="container">
+            <h2>Gems</h2>
             <h3>Was sind Gems?</h3>
             <p>Gems sind eine besondere Währung in Titancraft, die Spieler durch das Spielen und Gewinnen von Events erhalten können. Mit Gems können exklusive Gegenstände, kosmetische Upgrades und besondere Rechte im Spiel erworben werden.</p>
-            <p><strong>So bekommst du Gems:</strong></p>
+            <h3>Die Geschichte der Gems</h3>
+            <p>Die Idee der Gems entstand als eine Möglichkeit, den Spielern zusätzliche Anreize und Belohnungen für ihre Engagement zu bieten. Ursprünglich wurden Gems eingeführt, um besondere Leistungen und Erfolge im Spiel zu honorieren.</p>
+            <h3>So bekommst du Gems:</h3>
             <ul>
                 <li>Teilnahme an Server-Events und Wettbewerben</li>
                 <li>Erfüllen von Quests und Herausforderungen</li>
                 <li>Kauf über unseren Online-Shop</li>
             </ul>
-            <p>Mehr Informationen über Gems und wie du sie verwenden kannst, findest du in unserem <a href="Forum.html">Forum</a> oder auf unserem Discord-Server.</p>
+            <p>Mehr Informationen über Gems und wie du sie verwenden kannst, findest du auf unserem <a href="https://discord.gg/titancraft" target="_blank">Discord-Server</a>.</p>
         </div>
     </section>
 
