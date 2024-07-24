@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Titancraft - Minecraft SMP Server</title>
+    <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -76,10 +77,10 @@
             background: #e67e22;
         }
         .section {
-            padding: 60px 20px;
+            padding: 60px 0;
             display: none;
         }
-        .about, .server-info, .news, .community, .support, .contact, .chapter2, .gems {
+        .about, .server-info, .news, .community, .support, .contact {
             background: rgba(0, 0, 0, 0.8);
             padding: 40px 20px;
             border-radius: 10px;
@@ -146,18 +147,84 @@
             font-size: 2rem;
             color: #fff;
         }
-        .chapter2 img, .gems img {
-            max-width: 100%;
-            height: auto;
+        .team-member {
+            cursor: pointer;
+            margin: 10px 0;
+            font-size: 1.2em;
+            color: #f39c12;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            text-align: left;
+            border-radius: 8px;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .info-item {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
             border-radius: 10px;
-            margin-bottom: 20px;
         }
-        .chapter2 h3, .gems h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
+        .update-item ul {
+            list-style: disc;
+            margin-left: 20px;
         }
-        .chapter2 p, .gems p {
-            font-size: 1.2rem;
+        .community-links {
+            text-align: center;
+        }
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        .contact-info li {
+            margin-bottom: 10px;
+        }
+        .contact-info a {
+            color: #f39c12;
         }
     </style>
 </head>
@@ -175,8 +242,7 @@
                 <li><a onclick="showSection('community')">Community</a></li>
                 <li><a onclick="showSection('support')">Support</a></li>
                 <li><a onclick="showSection('contact')">Kontakt</a></li>
-                <li><a onclick="showSection('chapter2')">Titancraft Chapter 2</a></li>
-                <li><a onclick="showSection('gems')">Gems</a></li>
+                <li><a href="Forum.html">Forum</a></li>
             </ul>
         </nav>        
     </header>
@@ -192,14 +258,13 @@
     <section id="about" class="about section">
         <div class="container">
             <h2>Über uns</h2>
-            <p>Erfahre mehr über das Team und unsere Mission.</p>
+            <p>Erfahre mehr über das Team und unsere Mission</p>
             <div class="team">
                 <p><strong>Inhaber:</strong> <span class="team-member" data-index="0">Jannis</span>, <span class="team-member" data-index="1">Jürgen</span></p>
                 <p><strong>Admins:</strong> <span class="team-member" data-index="2">c4egtdro</span></p>
                 <p><strong>SocialMedia:</strong> <span class="team-member" data-index="5">WinterStream497</span></p>
                 <p><strong>Builder:</strong> <span class="team-member" data-index="3">Ehrenmann310e</span></p>
-                <p><strong>Sr. Moderator:</strong> <span class="team-member" data-index="4">Bacon</span></p>
-                <p><strong>Mod:</strong> <span class="team-member" data-index="6">Hoodie</span></p>
+                <p><strong>Sr. Moderator:</strong> <span class="team-member" data-index="4">Krafti</span></p>
             </div>
         </div>
     </section>
@@ -207,27 +272,65 @@
     <section id="server-info" class="server-info section">
         <div class="container">
             <h2>Server-Informationen</h2>
-            <p>Hier findest du alle Details über unseren Minecraft Server.</p>
-            <ul>
-                <li><strong>Version:</strong> 1.20.4</li>
-                <li><strong>IP-Adresse:</strong> play.titancraft.de</li>
-                <li><strong>Spielmodi:</strong> Survival, Creative, Skyblock</li>
-                <li><strong>Server-Website:</strong> <a href="https://www.titancraft.de" target="_blank">www.titancraft.de</a></li>
-            </ul>
+            <div class="info-grid">
+                <div class="info-item">
+                    <h3>Version</h3>
+                    <p>Hauptversion: 1.20.1<br>Beitritt möglich von 1.8 bis 1.21</p>
+                </div>
+                <div class="info-item">
+                    <h3>Regeln</h3>
+                    <p>Keine Beleidigung im Chat<br>Kein Bug ausnutzen z. B. Laggmaschinen<br>Keine Hackclients<br>Keine spielerleichternden Mods wie XRay, Minimap</p>
+                </div>
+                <div class="info-item">
+                    <h3>Features</h3>
+                    <p>Survival, Events, starke Community.</p>
+                </div>
+                <div class="info-item">
+                    <h3>Gems</h3>
+                    <p>Gems sind eine spezielle Währung auf unserem Server. Sie können für exklusive Items, Verbesserungen und andere Vorteile verwendet werden.</p>
+                    <p><strong>Regeln:</strong> Nutzt Gems fair und respektiert die Regeln. Missbrauch wird bestraft.</p>
+                </div>
+                <div class="info-item">
+                    <h3>Aktuellhüter</h3>
+                    <p>Die aktuellen Hüter sind die Teammitglieder, die dafür verantwortlich sind, dass die Serverregeln eingehalten werden und der Server reibungslos läuft.</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="news" class="news section">
         <div class="container">
-            <h2>News</h2>
-            <p>Bleib auf dem Laufenden mit den neuesten Nachrichten und Updates.</p>
-            <div class="news-item">
-                <h3>Neues Event: Sommerfest</h3>
-                <p>Vom 1. bis 7. August findet unser Sommerfest statt! Es erwarten dich spannende Events und tolle Preise.</p>
-            </div>
-            <div class="news-item">
-                <h3>Serverwartung am 15. Juli</h3>
-                <p>Am 15. Juli wird unser Server von 12:00 bis 14:00 Uhr gewartet. Bitte plane entsprechend.</p>
+            <h2>News & Updates</h2>
+            <div class="updates">
+                <div class="update-item">
+                    <h3>Update: Neuer Server 24/7</h3>
+                    <p>Hinzugefügt:</p>
+                    <ul>
+                        <li>Neuer Server 24/7</li>
+                        <li>Clan Plugin</li>
+                        <li>Scoreboard</li>
+                    </ul>
+                    <p>Entfernt:</p>
+                    <ul>
+                        <li>Alter Server</li>
+                    </ul>
+                    <p>Bei der Übertragung der SMP Welt von Aternos auf den neuen Server ist ein Fehler aufgetreten, der es nicht erlaubt, die SMP Welt zu exportieren. Ihr werdet neu anfangen müssen. Wenn ihr größere Gebäude hattet, erstellt einfach ein Ticket, dann werde ich sie per Schematic exportieren. Eure Items sollten allerdings erhalten geblieben sein.</p>
+                </div>
+                <div class="update-item">
+                    <h3>Update: Bank Plugin und Freunde Plugin</h3>
+                    <p>Hinzugefügt:</p>
+                    <ul>
+                        <li>Bank Plugin</li>
+                        <li>Freunde Plugin</li>
+                        <li>Custom Tab</li>
+                    </ul>
+                    <p>Entfernt:</p>
+                    <ul>
+                        <li>Deluxehub</li>
+                        <li>Scoreboard</li>
+                    </ul>
+                    <p>Für alle, die Simple Voice Chat benutzen wollen, schaut euch unbedingt dieses Video an: <a href="https://youtu.be/W_98uqbjepE">https://youtu.be/W_98uqbjepE</a></p>
+                </div>
             </div>
         </div>
     </section>
@@ -235,177 +338,152 @@
     <section id="community" class="community section">
         <div class="container">
             <h2>Community</h2>
-            <p>Werde Teil unserer wachsenden Community und erlebe spannende Abenteuer mit anderen Spielern.</p>
-            <a href="https://discord.gg/titancraft" target="_blank" class="btn">Beitreten</a>
+            <p>Willkommen in unserer lebendigen Community bei Titancraft! Hier hast du die Möglichkeit, dich mit anderen Spielern zu verbinden, neue Freundschaften zu schließen und gemeinsam spannende Abenteuer zu erleben.</p>
+            <p>Trete unserem Discord-Server bei, um in Echtzeit mit anderen Mitgliedern zu kommunizieren und an Community-Events teilzunehmen. Unser Forum bietet einen Raum für ausführlichere Diskussionen, Tutorials und den Austausch von Bauideen.</p>
+            <div class="community-links">
+                <a href="https://discord.com/invite/ZZYZhHVTMB" class="btn">Unser Discord</a>
+            </div>
         </div>
     </section>
 
     <section id="support" class="support section">
         <div class="container">
-            <h2>Support</h2>
-            <p>Hast du Fragen oder brauchst du Hilfe? Kontaktiere unser Support-Team.</p>
-            <ul>
-                <li><strong>Allgemeine Anfragen:</strong> support@titancraft.de</li>
-                <li><strong>Technische Probleme:</strong> techsupport@titancraft.de</li>
-                <li><strong>Feedback und Vorschläge:</strong> feedback@titancraft.de</li>
-            </ul>
+            <h2>Häufig gestellte Fragen (FAQ)</h2>
+            <div class="support-info">
+                <h3>Welche Version ist euer Server?</h3>
+                <p>Die Hauptversion unseres Servers ist 1.20.1. Ihr könnt jedoch ab der Version 1.8 jede Version nutzen, um dem Server beizutreten.</p>
+
+                <h3>Ist der Server für Bedrock?</h3>
+                <p>Ja, unser Server unterstützt Bedrock-Edition. Ihr könnt sowohl mit Java Edition als auch mit Bedrock Edition dem Server beitreten.</p>
+
+                <h3>Kann man sich bewerben?</h3>
+                <p>Ja, Bewerbungen sind möglich. Aktuell suchen wir jedoch keine neuen Supporter.</p>
+            </div>
         </div>
     </section>
 
     <section id="contact" class="contact section">
         <div class="container">
             <h2>Kontakt</h2>
-            <p>Wenn du mit uns in Kontakt treten möchtest, fülle bitte unser <a href="contact.html">Kontaktformular</a> aus.</p>
+            <p>Für Anfragen oder weitere Informationen, besuche unsere Social-Media-Profile:</p>
+            <div class="contact-info">
+                <h3>Social Media</h3>
+                <ul>
+                    <li><strong>Discord:</strong> <a href="https://discord.gg/ZZYZhHVTMB">discord.gg/ZZYZhHVTMB</a></li>
+                    <li><strong>Shop:</strong> <a href="https://inwartung.com">inwartung.com</a></li>
+                    <li><strong>Webseite:</strong> <a href="https://inwartung.com">inwartung.com</a></li>
+                    <li><strong>Youtube:</strong> <a href="https://youtube.com/@t1tancraftsmp?feature=shared">youtube.com/@t1tancraftsmp?feature=shared</a></li>
+                </ul>
+            </div>
         </div>
     </section>
-
-    <section id="chapter2" class="chapter2 section">
-        <div class="container">
-            <h2>Titancraft Chapter 2</h2>
-            <img src="https://www.dropbox.com/scl/fi/f8hfwz7bex5yd1tgcjtw9/1586083_326593.jpg?rlkey=n9grz9wmskwqhwre8r5sgkh92&dl=0" alt="Chapter 2">
-            <h3>Neues Kapitel, neue Abenteuer</h3>
-            <p>Entdecke die neuesten Updates und Features in Chapter 2 von Titancraft. Erlebe epische Quests, neue Welten und eine Community, die immer weiter wächst.</p>
-        </div>
-    </section>
-
-    <section id="gems" class="gems section">
-        <div class="container">
-            <section id="gems" class="gems section">
-    <div class="container">
-        <h2>Gems und die Titanen</h2>
-        <h3>Was sind Gems?</h3>
-        <p>In der Welt von Titancraft sind Gems mächtige Artefakte, die tief mit der Geschichte der Titanen verbunden sind. Diese seltenen und mystischen Steine besitzen außergewöhnliche Eigenschaften und sind in der Lage, das Schicksal von Königreichen und Abenteurern zu beeinflussen.</p>
-
-        <h3>Die Geschichte der Gems</h3>
-        <p>Vor langer Zeit, als die Titanen über die Welt von Titancraft herrschten, entdeckten sie eine Reihe außergewöhnlicher Gems, die ihre Kräfte erweiterten und ihre Reiche schützten. Jeder Titan hatte seine eigene spezielle Art von Gem, die ihn in seinem Einflussbereich stärkte. Die Gems wurden über die Jahrhunderte hinweg zu wertvollen Relikten der Titanenkultur und sind heute von großem historischen und magischen Wert.</p>
-
-        <h3>Die Titanen und ihre Gems</h3>
-        <p>Die Titanen verbanden sich mit verschiedenen Arten von Gems, die unterschiedliche Aspekte ihrer Macht und ihres Reiches repräsentierten. Hier sind einige der bedeutendsten Gems und ihre Fähigkeiten:</p>
-        
-        <div class="gem">
-            <h4>Stärke-Gem</h4>
-            <p><strong>Rechtsklick:</strong> Verleiht dem Träger immense Stärke, Widerstandskraft und Sättigung, was ihn nahezu unbesiegbar macht.</p>
-            <p><strong>Shift-Klick:</strong> Erschafft eine undurchdringliche Arena, die dem Nutzer Heilung ermöglicht.</p>
-            <p><strong>Linksklick:</strong> Löst eine mächtige Schockwelle aus, die Feinde wegschleudert und ihnen erheblichen Schaden zufügt.</p>
-        </div>
-        
-        <div class="gem">
-            <h4>Heilungs-Gem</h4>
-            <p><strong>Rechtsklick:</strong> Aktiviert eine Parade, die eingehende Angriffe abwehrt.</p>
-            <p><strong>Shift-Klick:</strong> Heilt den Träger sofort und stellt seine Kraft wieder her.</p>
-            <p><strong>Linksklick:</strong> Gewährt eine Minute lang starke Regeneration.</p>
-        </div>
-        
-        <div class="gem">
-            <h4>Luft-Gem</h4>
-            <p><strong>Rechtsklick:</strong> Bildet ein Windseil, das einen Feind zum Nutzer hinzieht.</p>
-            <p><strong>Shift-Klick:</strong> Hüllt den Nutzer in eine Rauchwolke, die vorübergehende Unsichtbarkeit und eine Geschwindigkeitserhöhung verleiht.</p>
-            <p><strong>Linksklick:</strong> Entfesselt einen starken Windstoß, der Feinde in die Luft hebt und Schaden zufügt.</p>
-        </div>
-        
-        <div class="gem">
-            <h4>Feuer-Gem</h4>
-            <p><strong>Rechtsklick:</strong> Umgibt den Nutzer mit einer feurigen Aura, die Feuerresistenz gewährt und die Umgebung entzündet.</p>
-            <p><strong>Shift-Klick:</strong> Verursacht eine massive Explosion, die in der Nähe befindliche Feinde verletzt und in Brand setzt.</p>
-            <p><strong>Linksklick:</strong> Schleudert einen zerstörerischen Feuerball, der beim Aufprall explodiert.</p>
-        </div>
-        
-        <div class="gem">
-            <h4>Eisen-Gem</h4>
-            <p><strong>Rechtsklick:</strong> Verleiht dem Nutzer vorübergehend erhöhte Absorption und Rückstoßresistenz.</p>
-            <p><strong>Shift-Klick:</strong> Erhöht die Rüstung und Zähigkeit des Nutzers.</p>
-            <p><strong>Linksklick:</strong> Schießt einen Kreis von Spektralpfeilen, die alle in der Nähe treffen.</p>
-        </div>
-        
-        <div class="gem">
-            <h4>Blitz-Gem</h4>
-            <p><strong>Rechtsklick:</strong> Ruft einen Blitz auf einen Zielort herab.</p>
-            <p><strong>Shift-Klick:</strong> Gibt ein donnerndes Geräusch ab und markiert nahe gelegene Wesen mit einem leuchtenden Effekt.</p>
-            <p><strong>Linksklick:</strong> Schießt den Nutzer mit hoher Geschwindigkeit nach vorne.</p>
-        </div>
-        
-        <div class="gem">
-            <h4>Sand-Gem</h4>
-            <p><strong>Rechtsklick:</strong> Schwächt Feinde, indem es ihre Stärke reduziert.</p>
-            <p><strong>Shift-Klick:</strong> Blendet und verlangsamt Feinde, indem es sie in Dunkelheit hüllt.</p>
-            <p><strong>Linksklick:</strong> Erschafft einen temporären Sandblock, der Feinde verlangsamt.</p>
-        </div>
-        
-        <div class="gem">
-            <h4>Eis-Gem</h4>
-            <p><strong>Rechtsklick:</strong> Wirft einen Eisblock, der Schaden zufügt.</p>
-            <p><strong>Shift-Klick:</strong> Beschwört Schneegolems zur Unterstützung im Kampf.</p>
-            <p><strong>Linksklick:</strong> Friert einen Feind ein und verlangsamt ihn.</p>
-        </div>
-        
-        <div class="gem">
-            <h4>Lava-Gem</h4>
-            <p><strong>Rechtsklick:</strong> Errichtet eine Wand aus Lava als Barriere.</p>
-            <p><strong>Shift-Klick:</strong> Beschwört einen Blaze, der für den Nutzer kämpft.</p>
-            <p><strong>Linksklick:</strong> Gewährt dem Nutzer Feuerresistenz.</p>
-        </div>
-
-        <h3>Die Bedeutung der Gems heute</h3>
-        <p>Heute sind die Gems nicht nur historische Relikte, sondern auch zentrale Elemente für Abenteuer und Quests in der Welt von Titancraft. Spieler können diese Gems entdecken, um besondere Aufgaben zu erfüllen und die Geheimnisse der Titanen zu enthüllen. Jeder Gem erzählt eine eigene Geschichte und bietet einzigartige Herausforderungen und Belohnungen.</p>
-        
-        <h3>Wie du mehr über die Gems erfahren kannst:</h3>
-        <ul>
-            <li>Durch das Abschließen von Quests, die von den Titanen hinterlassen wurden, und die Erschließung ihrer Geheimnisse.</li>
-            <li>Durch das Entdecken spezieller Orte und Artefakte in der Welt von Titancraft, die mit den Gems in Verbindung stehen.</li>
-            <li>Durch die Teilnahme an Events und Rätseln, die von der Community organisiert werden, um die Geschichte der Titanen und ihrer Gems zu erforschen.</li>
-        </ul>
-        
-        <p>Erlebe die Magie der Gems und werde Teil der faszinierenden Geschichte von Titancraft. Für aktuelle Informationen und Ereignisse rund um die Gems, besuche unseren <a href="https://discord.gg/titancraft" target="_blank">Discord-Server</a>.</p>
-    </div>
-</section>
-
-            </ul>
-            <p>Mehr Informationen über Gems und wie du sie verwenden kannst, findest du auf unserem <a href="https://discord.gg/titancraft" target="_blank">Discord-Server</a>.</p>
-        </div>
-    </section>
-
+    
     <footer>
-        <p>&copy; 2024 Titancraft. Alle Rechte vorbehalten.</p>
+        <div class="container">
+            <p>&copy; 2024 Titancraft. Alle Rechte vorbehalten.</p>
+            <div class="social-media">
+                <ul>
+                    <li><a href="https://discord.gg/ZZYZhHVTMB">Discord</a></li>
+                    <li><a href="https://inwartung.com">Shop</a></li>
+                    <li><a href="https://inwartung.com">Webseite</a></li>
+                    <li><a href="https://youtube.com/@t1tancraftsmp?feature=shared">Youtube</a></li>
+                </ul>
+            </div>
+        </div>
     </footer>
 
     <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+    
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+    
         function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
+            document.querySelectorAll('.section').forEach(section => {
                 section.style.display = 'none';
             });
             document.getElementById(sectionId).style.display = 'block';
         }
-
-        document.getElementById('hamburger').addEventListener('click', () => {
-            const navMenu = document.getElementById('nav-menu');
-            navMenu.classList.toggle('show');
-        });
-
+    
+        document.getElementById('home').style.display = 'flex';
+    
         document.querySelectorAll('.team-member').forEach(member => {
             member.addEventListener('click', () => {
                 const index = member.getAttribute('data-index');
-                const modals = document.querySelectorAll('.modal');
-                modals.forEach(modal => {
-                    if (modal.getAttribute('data-index') === index) {
-                        modal.style.display = 'flex';
+                const profiles = [
+                    {
+                        name: "Jannis",
+                        role: "Inhaber",
+                        description: "Der Gründer und Hauptverantwortliche für die Serverleitung.",
+                        img: "jannis.jpg"
+                    },
+                    {
+                        name: "Jürgen",
+                        role: "Inhaber",
+                        description: "Mitgründer und verantwortlich für technische Aspekte des Servers.",
+                        img: "juergen.jpg"
+                    },
+                    {
+                        name: "c4egtdro",
+                        role: "Admin",
+                        description: "Admin mit Fokus auf Servermanagement und Problemlösungen.",
+                        img: "c4egtdro.jpg"
+                    },
+                    {
+                        name: "Ehrenmann310e",
+                        role: "Builder",
+                        description: "Unser Haupt-Builder, der für großartige Bauwerke und Designs verantwortlich ist.",
+                        img: "builder.jpg"
+                    },
+                    {
+                        name: "Krafti",
+                        role: "Sr. Moderator",
+                        description: "Senior-Moderator, der die Serverregeln durchsetzt und bei Problemen hilft.",
+                        img: "krafti.jpg"
+                    },
+                    {
+                        name: "WinterStream497",
+                        role: "SocialMedia",
+                        description: "Verantwortlich für die sozialen Medien und die Öffentlichkeitsarbeit des Servers.",
+                        img: "socialmedia.jpg"
                     }
-                });
+                ];
+                const profile = profiles[index];
+                document.getElementById('profile-name').textContent = profile.name;
+                document.getElementById('profile-role').textContent = profile.role;
+                document.getElementById('profile-description').textContent = profile.description;
+                document.getElementById('profile-img').src = profile.img;
+                document.getElementById('profile-modal').style.display = 'flex';
             });
         });
-
-        document.querySelectorAll('.close').forEach(closeButton => {
-            closeButton.addEventListener('click', () => {
-                const modal = closeButton.closest('.modal');
-                modal.style.display = 'none';
-            });
-        });
-
-        document.addEventListener('click', (event) => {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
+    
+        const closeModal = () => {
+            document.getElementById('profile-modal').style.display = 'none';
+        };
+    
+        document.querySelector('.close').addEventListener('click', closeModal);
+    
+        window.onclick = (event) => {
+            if (event.target === document.getElementById('profile-modal')) {
+                closeModal();
             }
-        });
+        };
     </script>
+
+    <div id="profile-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="profile-info">
+                <img id="profile-img" class="profile-img" src="" alt="Profilbild">
+                <div>
+                    <h2 id="profile-name"></h2>
+                    <h3 id="profile-role"></h3>
+                    <p id="profile-description"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
