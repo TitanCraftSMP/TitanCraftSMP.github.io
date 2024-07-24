@@ -12,7 +12,7 @@
             background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
-            overflow-x: hidden;
+            overflow: hidden;
         }
         header {
             background: rgba(0, 0, 0, 0.7);
@@ -147,7 +147,7 @@
             color: #fff;
         }
 
-        .team-member, .support-question {
+        .team-member {
             cursor: pointer;
             margin: 10px 0;
             font-size: 1.2em;
@@ -194,7 +194,7 @@
             object-fit: cover;
             margin-right: 20px;
         }
-        .profile-info, .support-info {
+        .profile-info {
             display: flex;
             align-items: center;
         }
@@ -223,7 +223,7 @@
 <body>
     <header>
         <div class="logo">
-            <img src="titancrafts.png" alt="Titancraft">
+            <img src="titancrafts.png" alt="titancrafts">
         </div>
         <nav>
             <div class="hamburger" id="hamburger">☰</div>
@@ -266,39 +266,51 @@
     <section id="server-info" class="server-info section">
         <div class="container">
             <h2>Server-Informationen</h2>
-            <p>IP: <span style="color: #f39c12;">play.titancraft.de</span></p>
-            <p>Version: 1.20+</p>
-            <p>Modus: Survival Multiplayer (SMP)</p>
+            <p>Hier findest du alle Details über unseren Minecraft Server.</p>
+            <ul>
+                <li><strong>Version:</strong> 1.20.4</li>
+                <li><strong>IP-Adresse:</strong> play.titancraft.de</li>
+                <li><strong>Spielmodi:</strong> Survival, Creative, Skyblock</li>
+                <li><strong>Server-Website:</strong> <a href="https://www.titancraft.de" target="_blank">www.titancraft.de</a></li>
+            </ul>
         </div>
     </section>
 
     <section id="news" class="news section">
         <div class="container">
             <h2>News</h2>
-            <p>Bleib auf dem Laufenden mit den neuesten Nachrichten und Updates</p>
+            <p>Bleib auf dem Laufenden mit den neuesten Nachrichten und Updates.</p>
+            <div class="news-item">
+                <h3>Neues Event: Sommerfest</h3>
+                <p>Das Sommerfest steht vor der Tür! Nimm an spannenden Events und Aktivitäten teil.</p>
+            </div>
         </div>
     </section>
 
     <section id="community" class="community section">
         <div class="container">
             <h2>Community</h2>
-            <p>Erfahre mehr über unsere aktive und freundliche Community</p>
+            <p>Werde Teil unserer wachsenden Community und erlebe spannende Abenteuer mit anderen Spielern.</p>
+            <a href="https://discord.gg/titancraft" target="_blank" class="btn">Beitreten</a>
         </div>
     </section>
 
     <section id="support" class="support section">
         <div class="container">
             <h2>Support</h2>
-            <p>Brauche Hilfe? Kontaktiere unser Support-Team</p>
-            <p class="support-question" data-question="0">Wie kann ich mich registrieren?</p>
-            <p class="support-question" data-question="1">Wie erhalte ich Unterstützung bei Problemen?</p>
+            <p>Hast du Fragen oder brauchst du Hilfe? Kontaktiere unser Support-Team.</p>
+            <ul>
+                <li><strong>Allgemeine Anfragen:</strong> support@titancraft.de</li>
+                <li><strong>Technische Probleme:</strong> techsupport@titancraft.de</li>
+                <li><strong>Feedback und Vorschläge:</strong> feedback@titancraft.de</li>
+            </ul>
         </div>
     </section>
 
     <section id="contact" class="contact section">
         <div class="container">
             <h2>Kontakt</h2>
-            <p>Kontaktiere uns für Anfragen und Support</p>
+            <p>Wenn du mit uns in Kontakt treten möchtest, fülle bitte unser <a href="contact.html">Kontaktformular</a> aus.</p>
         </div>
     </section>
 
@@ -308,100 +320,60 @@
             <img src="https://www.dropbox.com/scl/fi/f8hfwz7bex5yd1tgcjtw9/1586083_326593.jpg?rlkey=n9grz9wmskwqhwre8r5sgkh92&dl=0" alt="Chapter 2">
             <h3>Neues Kapitel, neue Abenteuer</h3>
             <p>Entdecke die neuesten Updates und Features in Chapter 2 von Titancraft. Erlebe epische Quests, neue Welten und eine Community, die immer weiter wächst.</p>
+            <h3>Was sind Gems?</h3>
+            <p>Gems sind eine besondere Währung in Titancraft, die Spieler durch das Spielen und Gewinnen von Events erhalten können. Mit Gems können exklusive Gegenstände, kosmetische Upgrades und besondere Rechte im Spiel erworben werden.</p>
+            <p><strong>So bekommst du Gems:</strong></p>
+            <ul>
+                <li>Teilnahme an Server-Events und Wettbewerben</li>
+                <li>Erfüllen von Quests und Herausforderungen</li>
+                <li>Kauf über unseren Online-Shop</li>
+            </ul>
+            <p>Mehr Informationen über Gems und wie du sie verwenden kannst, findest du in unserem <a href="Forum.html">Forum</a> oder auf unserem Discord-Server.</p>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2023 Titancraft. Alle Rechte vorbehalten.</p>
+        <p>&copy; 2024 Titancraft. Alle Rechte vorbehalten.</p>
     </footer>
 
-    <div id="team-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="profile-info">
-                <img class="profile-img" id="profile-img" src="" alt="Profilbild">
-                <div>
-                    <h3 id="profile-name"></h3>
-                    <p id="profile-role"></p>
-                    <p id="profile-desc"></p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="support-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="support-info">
-                <h3 id="support-question"></h3>
-                <p id="support-answer"></p>
-            </div>
-        </div>
-    </div>
-
     <script>
-        const teamMembers = [
-            {name: "Jannis", role: "Inhaber", description: "Leitet den Server und sorgt für reibungslose Abläufe.", img: "https://via.placeholder.com/150"},
-            {name: "Jürgen", role: "Inhaber", description: "Kümmert sich um die Community und das Management.", img: "https://via.placeholder.com/150"},
-            {name: "c4egtdro", role: "Admin", description: "Sorgt für Sicherheit und Ordnung auf dem Server.", img: "https://via.placeholder.com/150"},
-            {name: "Ehrenmann310e", role: "Builder", description: "Kreiert beeindruckende Strukturen und Welten.", img: "https://via.placeholder.com/150"},
-            {name: "Bacon", role: "Sr. Moderator", description: "Unterstützt die Community und hilft bei Problemen.", img: "https://via.placeholder.com/150"},
-            {name: "WinterStream497", role: "SocialMedia", description: "Verbreitet Neuigkeiten und Updates über Social Media.", img: "https://via.placeholder.com/150"},
-            {name: "Hoodie", role: "Mod", description: "Moderiert den Chat und hilft den Spielern.", img: "https://via.placeholder.com/150"}
-        ];
-
-        const supportQuestions = [
-            {question: "Wie kann ich mich registrieren?", answer: "Um dich zu registrieren, besuche bitte unsere Registrierungsseite und fülle das Formular aus."},
-            {question: "Wie erhalte ich Unterstützung bei Problemen?", answer: "Für Unterstützung bei Problemen kontaktiere unser Support-Team über das Kontaktformular oder unseren Discord-Server."}
-        ];
-
-        document.querySelectorAll('.team-member').forEach((element) => {
-            element.addEventListener('click', function() {
-                const index = this.getAttribute('data-index');
-                const member = teamMembers[index];
-                document.getElementById('profile-img').src = member.img;
-                document.getElementById('profile-name').textContent = member.name;
-                document.getElementById('profile-role').textContent = member.role;
-                document.getElementById('profile-desc').textContent = member.description;
-                document.getElementById('team-modal').style.display = 'flex';
-            });
-        });
-
-        document.querySelectorAll('.support-question').forEach((element) => {
-            element.addEventListener('click', function() {
-                const index = this.getAttribute('data-question');
-                const support = supportQuestions[index];
-                document.getElementById('support-question').textContent = support.question;
-                document.getElementById('support-answer').textContent = support.answer;
-                document.getElementById('support-modal').style.display = 'flex';
-            });
-        });
-
-        document.querySelectorAll('.close').forEach((element) => {
-            element.addEventListener('click', function() {
-                document.querySelector('.modal').style.display = 'none';
-            });
-        });
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('team-modal') || event.target == document.getElementById('support-modal')) {
-                document.getElementById('team-modal').style.display = 'none';
-                document.getElementById('support-modal').style.display = 'none';
-            }
-        }
-
         function showSection(sectionId) {
-            document.querySelectorAll('.section').forEach(section => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
                 section.style.display = 'none';
             });
             document.getElementById(sectionId).style.display = 'block';
         }
 
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('nav-menu').classList.toggle('show');
+        document.getElementById('hamburger').addEventListener('click', () => {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('show');
         });
 
-        showSection('home'); // Standardmäßig die Hero-Sektion anzeigen
+        document.querySelectorAll('.team-member').forEach(member => {
+            member.addEventListener('click', () => {
+                const index = member.getAttribute('data-index');
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.getAttribute('data-index') === index) {
+                        modal.style.display = 'flex';
+                    }
+                });
+            });
+        });
+
+        document.querySelectorAll('.close').forEach(closeButton => {
+            closeButton.addEventListener('click', () => {
+                const modal = closeButton.closest('.modal');
+                modal.style.display = 'none';
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
