@@ -213,11 +213,10 @@
             <ul class="nav-menu" id="nav-menu">
                 <li><a onclick="showSection('about')">Über uns</a></li>
                 <li><a onclick="showSection('server-info')">Server-Informationen</a></li>
-                <li><a onclick="showSection('gems')">Gems</a></li>
                 <li><a onclick="showSection('news')">News</a></li>
                 <li><a onclick="showSection('community')">Community</a></li>
                 <li><a onclick="showSection('support')">Support</a></li>
-                <li><a onclick="showSection('contact')">Kontakt</a></li>
+                <li><a onclick="showSection('gems')">Gems</a></li>
                 <li><a href="Forum.html">Forum</a></li>
             </ul>
         </nav>        
@@ -240,7 +239,8 @@
                 <p><strong>Admins:</strong> <span class="team-member" data-index="2">c4egtdro</span></p>
                 <p><strong>SocialMedia:</strong> <span class="team-member" data-index="5">WinterStream497</span></p>
                 <p><strong>Builder:</strong> <span class="team-member" data-index="3">Ehrenmann310e</span></p>
-                <p><strong>Sr. Moderator:</strong> <span class="team-member" data-index="4">Krafti</span></p>
+                <p><strong>Sr. Moderator:</strong> <span class="team-member" data-index="4">Bacon</span></p>
+                <p><strong>T-Supporter:</strong> <span class="team-member" data-index="5">Nunu</span></p>
             </div>
         </div>
     </section>
@@ -248,7 +248,12 @@
     <section id="server-info" class="server-info section">
         <div class="container">
             <h2>Server-Informationen</h2>
+            <p>Gegründet am 23.06.2024</p>
             <div class="info-grid">
+                <div class="info-item">
+                    <h3>Server-IP</h3>
+                    <p>titancraft.g-portal.game</p>
+                </div>
                 <div class="info-item">
                     <h3>Version</h3>
                     <p>Hauptversion: 1.20.1<br>Beitritt möglich von 1.8 bis 1.21</p>
@@ -260,35 +265,6 @@
                 <div class="info-item">
                     <h3>Features</h3>
                     <p>Survival, Events, starke Community.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="gems" class="gems section">
-        <div class="container">
-            <h2>Gems und Aktuellhüter</h2>
-            <p>Hier erfährst du alles über Gems und wer aktuell die Hüter sind.</p>
-            <div class="info-grid">
-                <div class="info-item">
-                    <h3>Gems Regelwerk</h3>
-                    <p>Alle Spieler können Gems durch besondere Leistungen und Events verdienen. Es gibt folgende Regelungen:</p>
-                    <ul>
-                        <li>Gems können gegen besondere Items oder Vorteile eingetauscht werden.</li>
-                        <li>Der Erwerb von Gems erfolgt durch Teilnahme an Events, Herausforderungen oder durch besondere Leistungen im Spiel.</li>
-                        <li>Ein unfairer Vorteil durch Manipulation der Gems ist strengstens untersagt.</li>
-                        <li>Die Verwaltung und Vergabe von Gems erfolgt durch das Server-Team.</li>
-                    </ul>
-                </div>
-                <div class="info-item">
-                    <h3>Aktuelle Hüter</h3>
-                    <ul>
-                        <li><strong>Jannis</strong> - Der Gründer und Hauptadministrator.</li>
-                        <li><strong>Jürgen</strong> - Co-Administrator und Event-Koordinator.</li>
-                        <li><strong>c4egtdro</strong> - Admin und technischer Support.</li>
-                        <li><strong>Ehrenmann310e</strong> - Builder und Community-Manager.</li>
-                        <li><strong>Krafti</strong> - Sr. Moderator und Regelwächter.</li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -343,19 +319,64 @@
     </section>
 
     <section id="support" class="support section">
-    <div class="container">
-        <h2>Häufig gestellte Fragen (FAQ)</h2>
-        <div class="support-info">
-            <h3>Welche Version ist euer Server?</h3>
-            <p>Die Hauptversion unseres Servers ist 1.20.1. Ihr könnt jedoch ab der Version 1.8 jede Version nutzen, um dem Server beizutreten.</p>
+        <div class="container">
+            <h2>Häufig gestellte Fragen (FAQ)</h2>
+            <div class="support-info">
+                <h3>Welche Version ist euer Server?</h3>
+                <p>Die Hauptversion unseres Servers ist 1.20.1. Ihr könnt jedoch ab der Version 1.8 jede Version nutzen, um dem Server beizutreten.</p>
 
-            <h3>Ist der Server für Bedrock?</h3>
-            <p>Ja, unser Server unterstützt Bedrock-Edition. Ihr könnt sowohl mit Java Edition als auch mit Bedrock Edition dem Server beitreten.</p>
+                <h3>Ist der Server für Bedrock?</h3>
+                <p>Ja, unser Server unterstützt Bedrock-Edition. Ihr könnt sowohl mit Java Edition als auch mit Bedrock Edition dem Server beitreten.</p>
 
-            <h3>Kann man sich bewerben?</h3>
-            <p>Ja, Bewerbungen sind möglich. Aktuell suchen wir jedoch keine neuen Supporter.</p>
+                <h3>Kann man sich bewerben?</h3>
+                <p>Ja, Bewerbungen sind möglich. Aktuell suchen wir jedoch keine neuen Supporter.</p>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <section id="gems" class="gems section">
+        <div class="container">
+            <h2>Gems und Regelwerk</h2>
+            <p>Hier findest du die aktuellen Details zu unseren Gems und die Regeln, die du beachten musst:</p>
+            <div class="gems-details">
+                <h3>Gems</h3>
+                <p>Die Gems sind spezielle, seltene Items, die auf unserem Server verwendet werden können, um besondere Fähigkeiten zu erwerben oder Items zu verbessern. Es gibt verschiedene Arten von Gems, die du im Spiel finden oder durch besondere Events erwerben kannst.</p>
+                <h4>Arten von Gems:</h4>
+                <ul>
+                    <li><strong>Feuer-Gem:</strong> Gewährt temporäre Feuerresistenz.</li>
+                    <li><strong>Wasser-Gem:</strong> Verbessert die Schwimmgeschwindigkeit und die Atmung unter Wasser.</li>
+                    <li><strong>Wind-Gem:</strong> Erhöht die Bewegungsgeschwindigkeit und das Springen.</li>
+                    <li><strong>Erde-Gem:</strong> Verstärkt die Rüstung und reduziert den erlittenen Schaden.</li>
+                </ul>
+                <h3>Regelwerk für Gems</h3>
+                <ul>
+                    <li>Gems dürfen nicht gehandelt oder verkauft werden. Sie sind ausschließlich für den persönlichen Gebrauch bestimmt.</li>
+                    <li>Der Missbrauch von Gems (z.B. durch Bug-Exploits) führt zu einer Sperre des Accounts.</li>
+                    <li>Gems können nicht in den Kauf- oder Belohnungssystemen des Servers verwendet werden.</li>
+                    <li>Alle Gems müssen in Übereinstimmung mit den Server-Regeln verwendet werden.</li>
+                </ul>
+                <h3>Aktuelle Hüter der Gems</h3>
+                <div class="gem-guardians">
+                    <div class="guardian">
+                        <img src="guardian1.jpg" alt="Guardian 1" class="profile-img">
+                        <div class="guardian-info">
+                            <h4>Jannis</h4>
+                            <p><strong>Rolle:</strong> Chef-Hüter</p>
+                            <p>Jannis ist verantwortlich für die Verwaltung der Gem-Verteilung und die Einhaltung der Regeln.</p>
+                        </div>
+                    </div>
+                    <div class="guardian">
+                        <img src="guardian2.jpg" alt="Guardian 2" class="profile-img">
+                        <div class="guardian-info">
+                            <h4>Jürgen</h4>
+                            <p><strong>Rolle:</strong> Hüter</p>
+                            <p>Jürgen unterstützt bei der Überwachung der Nutzung von Gems und hilft bei der Lösung von Problemen.</p>
+                        </div>
+                    </div>
+                    <!-- Weitere Hüter hier hinzufügen -->
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="contact" class="contact section">
@@ -403,70 +424,34 @@
             document.getElementById(sectionId).style.display = 'block';
         }
     
-        document.getElementById('home').style.display = 'flex';
-    
-        const profiles = [
-            {
-                name: 'Jannis',
-                role: 'Inhaber',
-                img: 'images/jannis.jpg',
-                description: 'Gründer und Hauptadministrator des Servers.'
-            },
-            {
-                name: 'Jürgen',
-                role: 'Co-Administrator',
-                img: 'images/juergen.jpg',
-                description: 'Koordiniert Events und hilft bei administrativen Aufgaben.'
-            },
-            {
-                name: 'c4egtdro',
-                role: 'Admin',
-                img: 'images/c4egtdro.jpg',
-                description: 'Technischer Support und Admin.'
-            },
-            {
-                name: 'Ehrenmann310e',
-                role: 'Builder',
-                img: 'images/ehrenmann310e.jpg',
-                description: 'Baumeister und Community-Manager.'
-            },
-            {
-                name: 'Krafti',
-                role: 'Sr. Moderator',
-                img: 'images/krafti.jpg',
-                description: 'Moderator und Regelwächter.'
-            }
-        ];
-
         document.querySelectorAll('.team-member').forEach(member => {
             member.addEventListener('click', () => {
                 const index = member.getAttribute('data-index');
-                const profile = profiles[index];
-                document.getElementById('profile-name').innerText = profile.name;
-                document.getElementById('profile-role').innerText = profile.role;
-                document.getElementById('profile-description').innerText = profile.description;
-                document.getElementById('profile-img').setAttribute('src', profile.img);
-                document.getElementById('profile-modal').style.display = 'flex';
+                showModal(index);
             });
         });
-
-        document.querySelector('.close').addEventListener('click', () => {
-            document.getElementById('profile-modal').style.display = 'none';
+    
+        function showModal(index) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => modal.style.display = 'none');
+            const modal = document.getElementById('modal-' + index);
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+    
+        const closeButtons = document.querySelectorAll('.close');
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                button.closest('.modal').style.display = 'none';
+            });
+        });
+    
+        document.addEventListener('click', (event) => {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
         });
     </script>
-
-    <div id="profile-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="profile-info">
-                <img id="profile-img" class="profile-img" src="" alt="Profile Image">
-                <div>
-                    <h3 id="profile-name"></h3>
-                    <p id="profile-role"></p>
-                    <p id="profile-description"></p>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
